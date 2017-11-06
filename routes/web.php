@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'LoginCtrl@getLogin');
+Route::get('/projects', 'ProjectCtrl@getProject');
