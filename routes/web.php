@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'LoginCtrl@getLogin');
+Route::post('/login', ['uses' => 'LoginCtrl@doLogin', 'before' => 'csrf']);
 Route::get('/projects', 'ProjectCtrl@getProject');
