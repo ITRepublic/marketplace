@@ -25,6 +25,9 @@
                         <label for="inputPassword">Password</label>
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
+                    <div class="form-group">
+                        <a href="{{ URL::to('/JCRegis/create') }}">Register Job Creator</a>
+                    </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
