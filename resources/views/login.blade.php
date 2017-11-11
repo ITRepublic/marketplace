@@ -28,6 +28,9 @@
                     <div class="form-group">
                         <a href="{{ URL::to('/JCRegis/create') }}">Register Job Creator</a>
                     </div>
+                    <div class="form-group">
+                        <a href="{{ url('/register') }}">Register</a>
+                    </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
