@@ -14,12 +14,29 @@
         <div class="row" align-items-center>
             <div class="card col-md-4 offset-md-4">
                 <div class="card-body">
+                {{-- display error messages --}}
+                @if($errors->any())
+                	@foreach($errors->all() as $error)
+                		<div class="alert alert-danger">{{ $error }}</div>
+                	@endforeach
+                @endif
+				
+				{{-- display success message --}}
+                @if(session()->has('success'))
+                	<div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                {{ Form::open(array('url' => 'LoginJC/store', 'method' => 'POST')) }}
                     <div class="form-group">
-                        <button type="button" class="btn btn-sm btn-primary col-md-12"data-toggle="modal" data-target="#exampleModal">Login</button>
+                        {{ Form::label('EmailAddress', 'Email Address') }}
+                        {{ Form::email('EmailAddress', old('EmailAddress'), array('class' => 'form-control')) }}
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-sm btn-danger" href="{{ URL::to('register') }}">Register Job Creator</a>
-                        <a class="btn btn-sm btn-success" href="{{ URL::to('registerjobfinder/create') }}">Register Job Finder</a>                        
+                        {{ Form::label('Password', 'Password') }}
+                        {{ Form::password('Password', array('id' => 'Password', 'class' => 'form-control')) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
                     </div>
                 </div>
             </div>
@@ -37,7 +54,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <a href="{{ URL::to('LoginJC/create') }}" class="btn btn-danger">Job Creator</a>
+        <a href="{{ URL::to('registerjobfinder/create') }}" class="btn btn-danger">Job Creator</a>
         <a href="{{ URL::to('registerjobfinder/create') }}" class="btn btn-success">Job Finder</a>
       </div>
     </div>

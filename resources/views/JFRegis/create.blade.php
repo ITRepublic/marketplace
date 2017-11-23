@@ -5,45 +5,49 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Login :: IT Republic</title>
+        <title>Register :: IT Republic</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     </head>
     <body>
     <div class="container">
         <div class="row" align-items-center>
-            <div class="card col-md-4 offset-md-4">
+            <div class="card col-md-6 offset-md-3">
                 <div class="card-body">
-                {{ HTML::ul($errors->all()) }}
-                {{ Form::open(array('url' => 'JCRegis')) }}
+				
+				{{-- display error messages --}}
+                @if($errors->any())
+                	@foreach($errors->all() as $error)
+                		<div class="alert alert-danger">{{ $error }}</div>
+                	@endforeach
+                @endif
+				
+				{{-- display success message --}}
+                @if(session()->has('success'))
+                	<div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                {{ Form::open(array('url' => 'registerjobfinder/store', 'method' => 'POST')) }}
                 <div class="form-group">
-                    {{ Form::label('EmailAddress', 'Email Address') }}
-                    {{ Form::email('EmailAddress', Input::old('EmailAddress'), array('class' => 'form-control')) }}
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    {{ Form::label('UserName', 'User Name') }}
+                    {{ Form::text('UserName', old('UserName'), array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('Password', 'Password') }}
                     {{ Form::password('Password', array('id' => 'Password', 'class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('CompanyName', 'Company Name') }}
-                    {{ Form::text('CompanyName', Input::old('CompanyName'), array('class' => 'form-control')) }}
+                    {{ Form::label('Email', 'Email Address') }}
+                    {{ Form::email('Email', old('Email'), array('class' => 'form-control')) }}
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                    {{ Form::label('CompanyAddress', 'Company Address') }}
-                    {{ Form::textarea('CompanyAddress', Input::old('CompanyAddress'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('CreditCard', 'Credit Card') }}
-                    {{ Form::text('CreditCard', Input::old('CreditCard'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('CompanyProfile', 'Company Profile') }}
-                    {{ Form::textarea('CompanyProfile', Input::old('CompanyProfile'), array('class' => 'form-control')) }}
+                    {{ Form::label('Address', 'Address') }}
+                    {{ Form::textarea('Address', old('Address'), array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('Phone', 'Phone') }}
-                    {{ Form::text('Phone', Input::old('Phone'), array('class' => 'form-control')) }}
+                    {{ Form::text('Phone', old('Phone'), array('class' => 'form-control')) }}
                 </div>
 
                 {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
