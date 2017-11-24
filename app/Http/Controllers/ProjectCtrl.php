@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ProjectCtrl extends Controller
 {
-    public function getProject() {
-        return view('project.show')->withTitle('Projects');
+    public function create() {
+        return view('project.create')->withTitle('Projects');
     }
 }

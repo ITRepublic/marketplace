@@ -4,51 +4,9 @@ namespace App\Http\Controllers;
 
 use App\JobFinderModel;
 use Illuminate\Http\Request;
-use Hash;
 
 class JobFinderCtrl extends Controller
 {
-    public function __construct(Request $request)
-    {
-       $credentials = ['email' => $request->email, 'password' => $request->password];
-       $rules = ['email' => 'required', 'password' => 'required'];
-
-       $this->validate($request,$rules);
-
-       if(Auth::attempt($credentials)) {
-           // success login
-
-           //store to session
-           session()->put([
-               'user_id' => Auth::user()->id,
-               'user_name' => Auth::user()->name
-           ]); 
-
-           //get session
-           $user_id = session()->get('user_id');
-
-           // DB Transaction
-           // save ke multiple DB jadi dia ngecek dlu kalo udah berhasil smua baru di commit
-
-           DB::beginTransaction();
-           try {
-               // query ke table
-           }
-           catch(\Exception $e) {
-               // kalo gagal
-               DB::rollback();
-               throw $e;
-               // return back()->withErrors('Ada masalah pada server.');
-           }
-           //if success
-           DB::commit();
-           return redirect()->withSuccess();
-       }
-       else {
-           return back()->withErrors();
-       }
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +24,7 @@ class JobFinderCtrl extends Controller
      */
     public function create()
     {
-        return view('JFRegis/create')->withTitle('Register');
+        return view('jfregis.create')->withTitle('Register');
     }
 
     /**
@@ -81,7 +39,7 @@ class JobFinderCtrl extends Controller
         $rules = [
     		'UserName'      => 'required',
             'Password'      => 'required',
-            'Email'         => 'required|email',
+            'Email'         => 'required|email|unique:jobfinder,Email',
             'Address'       => 'required',
             'Phone'         => 'required|numeric'
     	];
@@ -89,7 +47,7 @@ class JobFinderCtrl extends Controller
         $this->validate($request, $rules);
         //save db
         $data['UserName'] = $request->UserName;
-        $data['Password'] = Hash::make($request->Password);
+        $data['Password'] = md5($request->Password);
         $data['Email'] = $request->Email;
         $data['Address'] = $request->Address;
         $data['Phone'] = $request->Phone;
@@ -106,7 +64,7 @@ class JobFinderCtrl extends Controller
         // JobFinderModel::where('id',$jf->id)->delete();
 
         // redirect
-        return redirect('registerjobfinder/create')->withSuccess('Thank you for registering. Your data has been saved.');
+        return redirect('jobFinder/create')->withSuccess('Thank you for registering. Your data has been saved.');
     }
 
     /**

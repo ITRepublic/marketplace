@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Job Finder Register :: IT Republic</title>
+        <title>Job Creator Register :: IT Republic</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
         <link rel="stylesheet" href="{{ asset('css/common.css') }}">
@@ -18,14 +18,14 @@
 				
 				@include('error.template')
 
-                {{ Form::open(array('url' => 'jobFinder/store', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => 'jobCreator/store', 'method' => 'POST')) }}
                 <div class="form-group">
-                    <h3>Job Finder Registration</h3>
+                    <h3>Job Creator Registration</h3>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('UserName', 'User Name', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('EmailAddress', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::text('UserName', old('UserName'), array('class' => 'form-control')) }}
+                        {{ Form::email('EmailAddress', old('EmailAddress'), array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -35,15 +35,27 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('Email', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('CompanyName', 'Company Name', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::email('Email', old('Email'), array('class' => 'form-control')) }}
+                        {{ Form::text('CompanyName', old('CompanyName'), array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('Address', 'Address', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('CompanyAddress', 'Company Address', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::textarea('Address', old('Address'), array('class' => 'form-control', 'rows' => '3')) }}
+                        {{ Form::textarea('CompanyAddress', old('CompanyAddress'), array('class' => 'form-control', 'rows' => '3')) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ Form::label('CreditCard', 'Credit Card', array('class' => 'col-sm-4 col-form-label')) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('CreditCard', old('CreditCard'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ Form::label('CompanyProfile', 'Company Profile', array('class' => 'col-sm-4 col-form-label')) }}
+                    <div class="col-sm-8">
+                        {{ Form::textarea('CompanyProfile', old('CompanyProfile'), array('class' => 'form-control', 'rows' => '3')) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -54,7 +66,7 @@
                 </div>
 
                 {{ Form::submit('Register', array('class' => 'btn btn-primary col-md-3 my-1')) }}
-                
+
                 <a href="{{ url('/') }}" class="btn btn-danger col-md-3 my-1">Back to Login</a>
 
                 {{ Form::close() }}

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobFinderModel extends Model
 {
-    //
     protected $table = "jobfinder";
     
     protected $fillable = [
