@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="container-fluid">
-            <center><img class="img-fluid" src="{{asset('image/itrepublic_logo.png')}}" style="margin-top: 3%; margin-bottom: 3%;"></center>
+            <center><img class="img-fluid" src="{{asset('image/itrepublic_logo.png')}}" style="margin-top: 4%; margin-bottom: 2%;"></center>
             <div class="row" align-items-center>
                 <div class="card col-md-6 offset-md-3">
                     <div class="card-body">
