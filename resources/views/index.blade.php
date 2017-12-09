@@ -41,10 +41,10 @@
                         </div>
                         <div class="form-group">
                             <label>Create Account:</label> <br>
-                            <a class="btn btn-danger col-md-3 my-1" href="{{ URL::to('jobCreator/create') }}">
+                            <a class="btn btn-danger col-md-3 my-1" href="{{ url('jobCreator/create') }}">
                                 <i class="fa fa-user pr-1"></i>Job Creator
                             </a>
-                            <a class="btn btn-success col-md-3 my-1" href="{{ URL::to('jobFinder/create') }}">
+                            <a class="btn btn-success col-md-3 my-1" href="{{ url('jobFinder/create') }}">
                                 <i class="fa fa-user pr-1"></i>Job Finder
                             </a>
                         </div>

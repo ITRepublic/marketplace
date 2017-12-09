@@ -17,10 +17,24 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <?php
+                $group = session()->get('group_check');
+                
+                $menulist = DB::table('usermenu')
+                ->select('usermenuid', 'menuname', 'urlroutemenu')
+                ->leftjoin('mastermenu', 'mastermenu.menuid', '=', 'usermenu.menuid')
+                ->where('usermenu.groupid', $group)
+                ->get();
+            ?>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                @foreach($menulist as $index => $value)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url($value->urlroutemenu) }}">{{ $value->menuname }}
+                        </a>
+                    </li>
+                @endforeach
+                    <!-- <li class="nav-item active">
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
@@ -36,7 +50,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="right-menu my-2 my-lg-0">
                   Hi, {{ session('user_name') }}

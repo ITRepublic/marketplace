@@ -35,7 +35,8 @@ class AuthCtrl extends Controller
                 session()->put([
                     'user_id' => $isAuthenticated->CompanyID,
                     'user_name' => $isAuthenticated->CompanyName,
-                    'user_email' => $isAuthenticated->EmailAddress
+                    'user_email' => $isAuthenticated->EmailAddress,
+                    'group_check' => $isAuthenticated->groupid
                 ]);
             }
         }
@@ -43,6 +44,12 @@ class AuthCtrl extends Controller
     		$isAuthenticated = JobFinderModel::where($credentials)->first();
             
             if($isAuthenticated) {
+                session()->put([
+                    'user_id' => $isAuthenticated->finderid,
+                    'user_name' => $isAuthenticated->UserName,
+                    'user_email' => $isAuthenticated->EmailAddress,
+                    'group_check' => $isAuthenticated->groupid
+                ]);
                 
             }
         }

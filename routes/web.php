@@ -1,8 +1,10 @@
 <?php
 
+use App\menurepo;
+
 // Authentication
 Route::get('/', 'AuthCtrl@create');
-Route::post('/store', 'AuthCtrl@store')->name('login');
+Route::post('/store', ['uses' => 'AuthCtrl@store', 'before' => 'csrf'])->name('login');
 Route::get('/destroy', 'AuthCtrl@destroy')->name('logout');
 
 // Register job creator
@@ -15,3 +17,12 @@ Route::post('/jobFinder/store', ['uses' => 'JobFinderCtrl@store', 'before' => 'c
 
 // Projects
 Route::get('/projects', 'ProjectCtrl@create');
+
+// Get menu from DB
+$menulist = menurepo::select('usermenuid', 'menuname', 'urlroutemenu')
+->leftJoin('mastermenu', 'mastermenu.menuid', '=', 'usermenu.menuid')
+->get();
+
+foreach($menulist as $menu) {
+    Route::get($menu->urlroutemenu,'JobFinderCtrl@create');
+}

@@ -11,7 +11,7 @@ class JobFinderModel extends Model
     protected $fillable = [
     	'UserName', 
     	'Password', 
-    	'Email', 
+    	'EmailAddress', 
     	'Address', 
     	'Phone'
     ];

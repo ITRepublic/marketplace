@@ -39,7 +39,7 @@ class JobFinderCtrl extends Controller
         $rules = [
     		'UserName'      => 'required',
             'Password'      => 'required',
-            'Email'         => 'required|email|unique:jobfinder,Email',
+            'EmailAddress'  => 'required|email|unique:jobfinder,EmailAddress',
             'Address'       => 'required',
             'Phone'         => 'required|numeric'
     	];
@@ -48,7 +48,7 @@ class JobFinderCtrl extends Controller
         //save db
         $data['UserName'] = $request->UserName;
         $data['Password'] = md5($request->Password);
-        $data['Email'] = $request->Email;
+        $data['EmailAddress'] = $request->EmailAddress;
         $data['Address'] = $request->Address;
         $data['Phone'] = $request->Phone;
 
