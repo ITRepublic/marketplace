@@ -36,6 +36,7 @@ class JobCreatorCtrl extends Controller
         $data['CreditCard'] = $request->CreditCard;
         $data['CompanyProfile'] = $request->CompanyProfile;
         $data['Phone'] = $request->Phone;
+        $data['groupid'] = 'JC';
 
         JobCreateModel::create($data);
 

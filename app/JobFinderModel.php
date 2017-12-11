@@ -13,7 +13,8 @@ class JobFinderModel extends Model
     	'Password', 
     	'EmailAddress', 
     	'Address', 
-    	'Phone'
+    	'Phone',
+    	'groupid'
     ];
 
     protected $guarded = ['Password'];

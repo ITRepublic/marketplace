@@ -16,7 +16,8 @@ class JobCreateModel extends Model
     	'CompanyAddress', 
     	'CompanyProfile', 
     	'CreditCard', 
-    	'Phone'
+    	'Phone',
+        'groupid'
     ];
 
     protected $guarded = ['Password', 'CreditCard'];
