@@ -14,6 +14,7 @@ Route::post('/jobCreator/store', ['uses' => 'JobCreatorCtrl@store', 'before' => 
 // Register job finder
 Route::get('/jobFinder/create', 'JobFinderCtrl@create');
 Route::post('/jobFinder/store', ['uses' => 'JobFinderCtrl@store', 'before' => 'csrf']);
+Route::post('/jobFinder/update', ['uses' => 'ProfileController@store', 'before' => 'csrf']);
 
 // Projects
 Route::get('/projects', 'ProjectCtrl@create');

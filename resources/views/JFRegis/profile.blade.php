@@ -9,10 +9,8 @@
         <div class="row" align-items-center>
             <div class="card col-md-6 offset-md-3">
                 <div class="card-body">
-				
-				@include('error.template')
 
-                {{ Form::open(array('url' => 'jobFinder/store', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => 'jobFinder/update', 'method' => 'POST')) }}
                 <div class="form-group">
                     <h3>Job Finder Profile</h3>
                 </div>
@@ -26,7 +24,7 @@
                 <div class="form-group row">
                     {{ Form::label('EmailAddress', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::email('EmailAddress', $JobFinderModel->EmailAddress, array('class' => 'form-control')) }}
+                        {{ Form::email('EmailAddress', $JobFinderModel->EmailAddress, array('class' => 'form-control', 'readonly' => 'true')) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -55,11 +53,10 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    <script>
     $(document).ready(function() {
         var url = "http://localhost/marketplace/public/"
-        alert('test');
-        $('.AddSkill').click(function(){
+        $('#AddSkill').click(function(){
             alert('test');
         var SkillChosen = $(SkillList).val();
             alert(SkillChosen);
