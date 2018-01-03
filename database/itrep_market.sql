@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2017 at 03:57 PM
+-- Generation Time: Jan 03, 2018 at 05:21 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -123,6 +123,7 @@ CREATE TABLE `mastermenu` (
   `menuid` varchar(25) NOT NULL,
   `menuname` varchar(255) NOT NULL,
   `urlroutemenu` varchar(255) NOT NULL,
+  `routemenu` varchar(50) NOT NULL,
   `seq` int(11) NOT NULL,
   `menudescription` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -131,11 +132,11 @@ CREATE TABLE `mastermenu` (
 -- Dumping data for table `mastermenu`
 --
 
-INSERT INTO `mastermenu` (`menuid`, `menuname`, `urlroutemenu`, `seq`, `menudescription`) VALUES
-('TS001', 'Profile Registration', 'profile', 1, 'Register Profile with CV'),
-('TS002', 'Job Marketplace', 'project.marketplace', 2, 'Job Browsing'),
-('TS003', 'Job Market Place Registration', 'project.marketregister', 3, 'Form to register Job Market Place'),
-('TS004', 'Resume', 'project.resume', 4, 'Job Finder Resume');
+INSERT INTO `mastermenu` (`menuid`, `menuname`, `urlroutemenu`, `routemenu`, `seq`, `menudescription`) VALUES
+('TS001', 'Profile Registration', '/profile', 'ProfileController@create', 1, 'Register Profile with CV'),
+('TS002', 'Job Marketplace', '/profile', 'ProfileController@create', 2, 'Job Browsing'),
+('TS003', 'Job Market Place Registration', '/profile', 'ProfileController@create', 3, 'Form to register Job Market Place'),
+('TS004', 'Resume', '/profile', 'ProfileController@create', 4, 'Job Finder Resume');
 
 -- --------------------------------------------------------
 
@@ -180,6 +181,14 @@ CREATE TABLE `skilltype` (
   `SkillType` varchar(255) NOT NULL,
   `SkillDescription` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `skilltype`
+--
+
+INSERT INTO `skilltype` (`IndexNo`, `SkillID`, `SkillType`, `SkillDescription`) VALUES
+(1, 'Cobol', 'Programming Language', ''),
+(2, 'PHP', 'Programming Language', '');
 
 -- --------------------------------------------------------
 
@@ -318,7 +327,7 @@ ALTER TABLE `skilllist`
 -- AUTO_INCREMENT for table `skilltype`
 --
 ALTER TABLE `skilltype`
-  MODIFY `IndexNo` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `IndexNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

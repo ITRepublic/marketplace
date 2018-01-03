@@ -19,10 +19,10 @@ Route::post('/jobFinder/store', ['uses' => 'JobFinderCtrl@store', 'before' => 'c
 Route::get('/projects', 'ProjectCtrl@create');
 
 // Get menu from DB
-$menulist = menurepo::select('usermenuid', 'menuname', 'urlroutemenu')
+$menulist = menurepo::select('usermenuid', 'menuname', 'urlroutemenu', 'routemenu')
 ->leftJoin('mastermenu', 'mastermenu.menuid', '=', 'usermenu.menuid')
 ->get();
 
 foreach($menulist as $menu) {
-    Route::get($menu->urlroutemenu,'JobFinderCtrl@create');
+    Route::get($menu->urlroutemenu,$menu->routemenu);
 }

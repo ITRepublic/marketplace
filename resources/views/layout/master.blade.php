@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('css/common.css') }}">
         <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
         <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+        
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
