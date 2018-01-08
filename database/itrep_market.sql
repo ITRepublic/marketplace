@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2018 at 05:21 AM
+-- Generation Time: Jan 08, 2018 at 06:09 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -60,7 +60,8 @@ CREATE TABLE `jobcreator` (
 --
 
 INSERT INTO `jobcreator` (`CompanyID`, `EmailAddress`, `Password`, `CompanyName`, `CompanyAddress`, `CreditCard`, `CompanyProfile`, `Phone`, `groupid`, `updated_at`, `created_at`) VALUES
-(1, 'vincent@gmail.com', '123456', 'Jayabaya', 'Jakarta', '12313123', 'Jakarta', '12312312', 'JC', '2017-11-11 14:43:43', '2017-11-11 14:43:43');
+(1, 'vincent@gmail.com', '123456', 'Jayabaya', 'Jakarta', '12313123', 'Jakarta', '12312312', 'JC', '2017-11-11 14:43:43', '2017-11-11 14:43:43'),
+(2, '123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'suka suka', 'Bojong Indah', '12313123123', 'Jakarta', '12313123', 'JC', '2018-01-08 23:45:37', '2018-01-08 23:45:37');
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,14 @@ CREATE TABLE `jobtype` (
   `JobTypeDesc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jobtype`
+--
+
+INSERT INTO `jobtype` (`IndexNo`, `JobTypeID`, `JobTypeDesc`) VALUES
+(1, 'Backend', 'Backend Programming (API, PHP)'),
+(2, 'Front End', 'Front End Programming (HTML, CSS)');
+
 -- --------------------------------------------------------
 
 --
@@ -134,9 +143,9 @@ CREATE TABLE `mastermenu` (
 
 INSERT INTO `mastermenu` (`menuid`, `menuname`, `urlroutemenu`, `routemenu`, `seq`, `menudescription`) VALUES
 ('TS001', 'Profile Registration', '/profile', 'ProfileController@create', 1, 'Register Profile with CV'),
-('TS002', 'Job Marketplace', '/profile', 'ProfileController@create', 2, 'Job Browsing'),
-('TS003', 'Job Market Place Registration', '/profile', 'ProfileController@create', 3, 'Form to register Job Market Place'),
-('TS004', 'Resume', '/profile', 'ProfileController@create', 4, 'Job Finder Resume');
+('TS002', 'Job Marketplace', '/marketplace', 'JobMarketController@create', 2, 'Job Browsing'),
+('TS003', 'Job Market Place Registration', '/jobregistration', 'JobRegistrationController@create', 3, 'Form to register Job Market Place'),
+('TS004', 'Resume', '/resume', 'ResumeController@create', 4, 'Job Finder Resume');
 
 -- --------------------------------------------------------
 
@@ -297,7 +306,7 @@ ALTER TABLE `jobagreement`
 -- AUTO_INCREMENT for table `jobcreator`
 --
 ALTER TABLE `jobcreator`
-  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jobfinder`
 --
@@ -312,7 +321,7 @@ ALTER TABLE `jobmatchsearch`
 -- AUTO_INCREMENT for table `jobtype`
 --
 ALTER TABLE `jobtype`
-  MODIFY `IndexNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IndexNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `projectjobrequirement`
 --

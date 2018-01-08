@@ -27,3 +27,10 @@ $menulist = menurepo::select('usermenuid', 'menuname', 'urlroutemenu', 'routemen
 foreach($menulist as $menu) {
     Route::get($menu->urlroutemenu,$menu->routemenu);
 }
+
+// Profile
+Route::post('profile/store', ['uses' => 'ProfileController@store', 'before' => 'csrf']);
+
+
+// Job Registration
+Route::post('jobmarketregis/store', ['uses' => 'JobRegistrationController@store', 'before' => 'csrf']);

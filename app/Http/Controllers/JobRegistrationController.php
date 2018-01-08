@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\JobFinderModel;
+use App\ProjectJobReqModel;
 use App\SkillTypeModel;
 use App\SkillListModel;
+use App\JobCreateModel;
+use App\JobTypeModel;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class JobRegistrationController extends Controller
 {
+    //
     public function create()
     {
         $emailid = session()->get('user_email');
-        $JobFinderModel = JobFinderModel::where('EmailAddress', $emailid)->first();
+        $JobCreateModel = JobCreateModel::where('EmailAddress', $emailid)->first();
+        $JobType = JobTypeModel::pluck('JobTypeID', 'JobTypeDesc');
         $SkillType = SkillTypeModel::pluck('SkillID', 'SkillID');
-        return view('jfregis.profile', array('JobFinderModel' => $JobFinderModel, 'SkillType' => $SkillType))->withTitle('Profile');
+        return view('project.jobmarketregis', array('JobCreateModel' => $JobCreateModel, 'JobType' => $JobType, 'SkillType' => $SkillType))->withTitle('Job Registration');
     }
 
     public function store(Request $request)
@@ -43,7 +47,7 @@ class ProfileController extends Controller
     
             $jf = JobFinderModel::create($data);
     
-            return redirect('jobFinder/create')->withSuccess('Thank you for registering. Your data has been saved.');
+            return redirect('Profile/create')->withSuccess('Thank you for registering. Your data has been saved.');
         }
     }
 }
