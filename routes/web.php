@@ -30,7 +30,7 @@ foreach($menulist as $menu) {
 
 // Profile
 Route::post('profile/store', ['uses' => 'ProfileController@store', 'before' => 'csrf']);
-
+Route::post('profile/skill/add', ['uses' => 'ProfileController@addSkill']);
 
 // Job Registration
 Route::post('jobmarketregis/store', ['uses' => 'JobRegistrationController@store', 'before' => 'csrf']);
