@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.35)
 # Database: itrep_market
-# Generation Time: 2018-01-09 05:01:18 +0000
+# Generation Time: 2018-01-21 10:15:54 +0000
 # ************************************************************
 
 
@@ -95,7 +95,7 @@ INSERT INTO `jobfinder` (`finderid`, `UserName`, `Password`, `EmailAddress`, `Ad
 VALUES
 	(1,'vincent123','e10adc3949ba59abbe56e057f20f883e','123@gmail.com','bojong indah','123213123123','JF','2017-12-02 01:36:12','2017-12-02 01:36:12'),
 	(2,'vincent1','e10adc3949ba59abbe56e057f20f883e','vincent123@gmail.com','bojong indah','123213123','JF','2017-12-02 14:05:14','2017-12-02 14:05:14'),
-	(3,'Jorjonna','e10adc3949ba59abbe56e057f20f883e','jorjonna@gmail.com','citra 2','0000','JF','2018-01-09 11:15:40','2018-01-09 11:06:26');
+	(3,'Jorjonna','e10adc3949ba59abbe56e057f20f883e','jorjonna@gmail.com','citra 2','0000','JF','2018-01-21 16:53:28','2018-01-09 11:06:26');
 
 /*!40000 ALTER TABLE `jobfinder` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -169,10 +169,13 @@ LOCK TABLES `mastermenu` WRITE;
 
 INSERT INTO `mastermenu` (`menuid`, `menuname`, `urlroutemenu`, `routemenu`, `seq`, `menudescription`, `created_at`, `updated_at`)
 VALUES
-	('TS001','Profile Registration','/profile','ProfileController@create',1,'Register Profile with CV',NULL,NULL),
-	('TS002','Job Marketplace','/marketplace','JobMarketController@create',2,'Job Browsing',NULL,NULL),
-	('TS003','Job Market Place Registration','/jobregistration','JobRegistrationController@create',3,'Form to register Job Market Place',NULL,NULL),
-	('TS004','Resume','/resume','ResumeController@create',4,'Job Finder Resume',NULL,NULL);
+	('TS001','Profile','/profile','ProfileController@create',1,'Register Profile with CV',NULL,NULL),
+	('TS002','Search Job','/marketplace','JobMarketController@create',2,'Job Browsing',NULL,NULL),
+	('TS003','Register Job','/jobregistration','JobRegistrationController@create',3,'Form to register Job Market Place',NULL,NULL),
+	('TS004','Resume','/resume','ResumeController@create',4,'Job Finder Resume',NULL,NULL),
+	('TS005','Company Profile','/companyprofile','ComproController@create',5,'Company Profile',NULL,NULL),
+	('TS006','History','/history','HistoryBidController@create',6,'History bidding',NULL,NULL),
+	('TS007','Job Agreement','/jobagreement','JobAgreementController@create',7,'Job Agreement show deal and undeal projects',NULL,NULL);
 
 /*!40000 ALTER TABLE `mastermenu` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -280,7 +283,10 @@ VALUES
 	('UM001','JF','TS001',NULL,NULL),
 	('UM002','JF','TS002',NULL,NULL),
 	('UM003','JC','TS003',NULL,NULL),
-	('UM004','JC','TS004',NULL,NULL);
+	('UM004','JC','TS004',NULL,NULL),
+	('UM005','JC','TS005',NULL,NULL),
+	('UM006','JF','TS006',NULL,NULL),
+	('UM007','JC','TS007',NULL,NULL);
 
 /*!40000 ALTER TABLE `usermenu` ENABLE KEYS */;
 UNLOCK TABLES;
