@@ -59,7 +59,6 @@
                 </ul>
                 <div class="right-menu my-2 my-lg-0">
                   Hi, {{ session('user_name') }}
-                  <a href="" class="ml-3"><i class="fa fa-user mr-1"></i>Profile</a>
                   <a href="{{ route('logout') }}" class="ml-3"><i class="fa fa-sign-out mr-1"></i>Logout</a>
                 </div>
             </div>

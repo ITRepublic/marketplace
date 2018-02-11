@@ -18,12 +18,24 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Action</th>
-                                <th>Job Title</th>
-                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>User Name</th>
+                                <th>Rating</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @foreach($JobFinderModel as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td><a class="btn btn-danger col-md-5 my-1" href="{{ url('resume/resumedetail') }}">
+                                            <i class="fa fa-user pr-1"></i>Detail
+                                        </a>
+                                    </td>
+                                    <td>{{ $item->EmailAddress }}</td>
+                                    <td>{{ $item->UserName }}</td>
+                                    <td>4</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     <table>
                 </div>

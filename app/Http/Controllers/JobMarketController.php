@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JobMasterModel;
 use App\ProjectJobReqModel;
 use App\SkillTypeModel;
 use App\SkillListModel;

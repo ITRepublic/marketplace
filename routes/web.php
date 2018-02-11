@@ -32,5 +32,16 @@ foreach($menulist as $menu) {
 Route::post('profile/store', ['uses' => 'ProfileController@store', 'before' => 'csrf']);
 Route::post('profile/skill/add', ['uses' => 'ProfileController@addSkill']);
 
+// Company Profile
+Route::post('companyprofile/store', ['uses' => 'CompanyProfileController@store', 'before' => 'csrf']);
+
 // Job Registration
-Route::post('jobmarketregis/store', ['uses' => 'JobRegistrationController@store', 'before' => 'csrf']);
+Route::get('jobmarketregis/createstep2', 'JobRegistrationController@createstep2');
+Route::post('jobmarketregis/storestep1', ['uses' => 'JobRegistrationController@storestep1', 'before' => 'csrf']);
+
+Route::get('jobmarketregis/createstep3', 'JobRegistrationController@createstep3');
+Route::post('jobmarketregis/addjobtype', ['uses' => 'JobRegistrationController@addJobType']);
+Route::post('jobmarketregis/storestep2', ['uses' => 'JobRegistrationController@storestep2', 'before' => 'csrf']);
+
+Route::post('jobmarketregis/addskill/add', ['uses' => 'ProfileController@addSkill']);
+Route::post('jobmarketregis/storestep3', ['uses' => 'JobRegistrationController@storestep3', 'before' => 'csrf']);
