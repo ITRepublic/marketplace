@@ -10,7 +10,7 @@
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
                 <div class="form-group">
-                    <h3>This is Resume</h3>
+                    <h3>Search for Jobs</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
