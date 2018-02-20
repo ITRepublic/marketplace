@@ -55,7 +55,7 @@
         
         var JobTypeChosen = $("#DdlJobType").val();
         var JobID = $('#TxtJobID').val();
-        alert(JobTypeChosen);
+
         jQuery.post('{{ url("/jobmarketregis/addjobtype") }}', {"JobTypeID": JobTypeChosen, "JobID": JobID})
         .then(function(response){
             if(response.message == 'OK') {

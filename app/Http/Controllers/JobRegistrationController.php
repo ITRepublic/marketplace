@@ -68,22 +68,16 @@ class JobRegistrationController extends Controller
     {
         $JobTypeID = $request->JobTypeID;
         $JobID = $request->JobID;
-        
-        $wherecondition = [
-            'JobID' => $JobID,
-            'JobTypeID' => $JobTypeID
-        ];
-        var_dump($wherecondition);
-        die();
-        echo dd($request->JobTypeID);
-        $JobTypeListModel = JobMatchTypeModel::where($wherecondition)->first();
-        $data['JobID'] = $JobID;
-        $data['JobTypeID'] = $JobTypeID;
+
+        $JobTypeListModel = JobMatchTypeModel::where('JobID', $JobID)->where('JobTypeID', $JobTypeID)->first();
         
         if(count($JobTypeListModel) == 0) {
+            $data['JobID'] = $JobID;
+            $data['JobTypeID'] = $JobTypeID;
             $JobMatchTypeModel = JobMatchTypeModel::create($data);
+
             return response()->json(array(
-                'data' => $JobMatchType,
+                'data' => $JobMatchTypeModel,
                 'message' => 'OK'
             ));
         }
