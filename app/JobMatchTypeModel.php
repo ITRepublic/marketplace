@@ -10,6 +10,7 @@ class JobMatchTypeModel extends Model
     protected $table = "jobmatchtype";
     
     protected $fillable = [
+        'TypeJobID',
     	'JobID', 
         'JobTypeID'
     ];

@@ -13,8 +13,10 @@ class JobMasterModel extends Model
     	'JobID', 
     	'JobTitle', 
         'Description',
+        'ExpiredDate',
         'JCEmailAddress', 
-    	'Difficulty', 
+        'Difficulty',
+        'CurrencyID', 
         'HasSeenID',
         'PriceList'
     ];

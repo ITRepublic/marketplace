@@ -10,7 +10,6 @@ class SkillTypeModel extends Model
     protected $table = "skilltype";
     
     protected $fillable = [
-    	'IndexNo', 
     	'SkillID', 
     	'SkillType', 
     	'SkillDescription'

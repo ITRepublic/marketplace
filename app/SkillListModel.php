@@ -9,8 +9,7 @@ class SkillListModel extends Model
     //
     protected $table = "skilllist";
     
-    protected $fillable = [
-    	'IndexNo', 
+    protected $fillable = [ 
     	'SkillListID', 
     	'JFEmailAddress', 
     	'SkillID'

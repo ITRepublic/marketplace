@@ -43,5 +43,5 @@ Route::get('jobmarketregis/createstep3', 'JobRegistrationController@createstep3'
 Route::post('jobmarketregis/addjobtype', ['uses' => 'JobRegistrationController@addJobType']);
 Route::post('jobmarketregis/storestep2', ['uses' => 'JobRegistrationController@storestep2', 'before' => 'csrf']);
 
-Route::post('jobmarketregis/addskill/add', ['uses' => 'ProfileController@addSkill']);
+Route::post('jobmarketregis/addskill', ['uses' => 'JobRegistrationController@addSkill']);
 Route::post('jobmarketregis/storestep3', ['uses' => 'JobRegistrationController@storestep3', 'before' => 'csrf']);

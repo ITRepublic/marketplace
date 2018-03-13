@@ -33,6 +33,12 @@
                         {{ Form::textarea('Description', old('Description'), array('class' => 'form-control', 'rows' => '3')) }}
                     </div>
                 </div>
+                <div class="form-group row">
+                    {{ Form::label('ExpiredDate', 'Expired Date', array('class' => 'col-sm-4 col-form-label')) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('ExpiredDate', '', array('class' => 'form-control', 'id' => 'datepicker', 'readonly' => 'true')) }}
+                    </div>
+                </div>
                 {{ Form::submit('Next to step 2', array('class' => 'btn btn-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    

@@ -10,7 +10,6 @@ class JobAgreementModel extends Model
     protected $table = "jobagreement";
     
     protected $fillable = [
-    	'IndexNo', 
     	'AgreementID', 
     	'JobMatchID', 
     	'AgreementDesc'

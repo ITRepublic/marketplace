@@ -59,7 +59,7 @@
                                 @foreach($SkillList as $index => $item)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->SkillID }}</td>
+                                        <td>{{ $item->SkillType }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

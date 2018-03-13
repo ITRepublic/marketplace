@@ -15,11 +15,11 @@ class ProfileController extends Controller
     {
         $emailid = session()->get('user_email');
         $JobFinderModel = JobFinderModel::where('EmailAddress', $emailid)->first();
-        $SkillType = SkillTypeModel::pluck('SkillID', 'SkillID');
+        $SkillType = SkillTypeModel::pluck('SkillType', 'SkillID');
 
-        $SkillList = SkillListModel::join('skilltype','skilllist.SkillID', '=', 'skilltype.IndexNo')
+        $SkillList = SkillListModel::join('skilltype','skilllist.SkillID', '=', 'skilltype.SkillID')
                     ->where('JFEmailAddress', $emailid)
-                    ->get(['skilltype.SkillID']);
+                    ->get(['skilltype.SkillType']);
 
         return view('jfregis.profile', array('JobFinderModel' => $JobFinderModel, 'SkillType' => $SkillType, 'SkillList' => $SkillList))->withTitle('Profile');
     }
@@ -46,11 +46,10 @@ class ProfileController extends Controller
         $email = $request->email;
         $skillType = SkillTypeModel::where('SkillID', $skillName)->first();
 
-        $skillListModel = SkillListModel::where('SkillID',$skillType->IndexNo)->first();
+        $skillListModel = SkillListModel::where('SkillID',$skillType->SkillID)->first();
 
-        $data['SkillListID'] = $skillType->IndexNo;
         $data['JFEmailAddress'] = $email;
-        $data['SkillID'] =  $skillType->IndexNo;
+        $data['SkillID'] =  $skillType->SkillID;
         
         if(count($skillListModel) == 0) {
             $skillList = SkillListModel::create($data);

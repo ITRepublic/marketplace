@@ -18,8 +18,11 @@ class JobMarketController extends Controller
     {
         $emailid = session()->get('user_email');
         $JobFinderModel = JobFinderModel::where('EmailAddress', $emailid)->first();
-        $SkillType = SkillTypeModel::pluck('SkillID', 'SkillID');
-        return view('project.jobmarket')->withTitle('Job Marketplace');
+        $JobMasterModel = JobMasterModel::join('currency','jobmaster.CurrencyID', '=', 'currency.CurrencyID')
+        ->join('jobcreator','jobmaster.JCEmailAddress', '=', 'jobcreator.EmailAddress')
+        ->join('masterdifficulty','jobmaster.Difficulty', '=', 'masterdifficulty.DiffID')
+        ->get();
+        return view('project.jobmarket', array('JobMasterModel' => $JobMasterModel, 'JobFinderModel' => $JobFinderModel))->withTitle('Job Marketplace');
     }
 
     public function store(Request $request)
