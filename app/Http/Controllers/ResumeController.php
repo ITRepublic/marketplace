@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
-    //
     public function create()
     {
         $JobFinderModel = JobFinderModel::all();
         return view('resume.resumegrid', array('JobFinderModel' => $JobFinderModel))->withTitle('Job Finder List');
+    }
+
+    public function getDetail($id)
+    {
+    	echo 'Resume ID: '.$id;
     }
 }

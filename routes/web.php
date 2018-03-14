@@ -45,3 +45,6 @@ Route::post('jobmarketregis/storestep2', ['uses' => 'JobRegistrationController@s
 
 Route::post('jobmarketregis/addskill', ['uses' => 'JobRegistrationController@addSkill']);
 Route::post('jobmarketregis/storestep3', ['uses' => 'JobRegistrationController@storestep3', 'before' => 'csrf']);
+
+// Resume
+Route::get('resume/{id}/detail', 'ResumeController@getDetail')->name('detailResume');
