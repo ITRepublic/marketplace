@@ -43,8 +43,9 @@ class JobRegistrationController extends Controller
         $data['ExpiredDate'] = $request->ExpiredDate;
         $data['Difficulty'] = '';
         $data['CurrencyID'] = '0';
-        $data['HasSeenID'] = '';
+        $data['HasSeenID'] = '0';
         $data['PriceList'] = '';
+        $data['JobStatus'] = '0';
         $num_liscence_exist=true;
         while($num_liscence_exist){
 
@@ -61,6 +62,7 @@ class JobRegistrationController extends Controller
            }else
            {
                //Nih Jor yang buat nampilin error
+               
            }
         }
         

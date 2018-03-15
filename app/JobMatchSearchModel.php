@@ -12,6 +12,7 @@ class JobMatchSearchModel extends Model
     protected $fillable = [
     	'JobMatchID', 
     	'JobID', 
-        'JFEmailAddress'
+        'JFEmailAddress',
+        'StatusID'
     ];
 }

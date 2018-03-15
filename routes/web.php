@@ -46,5 +46,14 @@ Route::post('jobmarketregis/storestep2', ['uses' => 'JobRegistrationController@s
 Route::post('jobmarketregis/addskill', ['uses' => 'JobRegistrationController@addSkill']);
 Route::post('jobmarketregis/storestep3', ['uses' => 'JobRegistrationController@storestep3', 'before' => 'csrf']);
 
+//search job
+Route::get('jobmarket/{id}/detail', 'JobMarketController@getDetail')->name('detailJobMarket');
+Route::post('jobmarket/store', ['uses' => 'JobMarketController@store', 'before' => 'csrf']);
 // Resume
 Route::get('resume/{id}/detail', 'ResumeController@getDetail')->name('detailResume');
+
+//job agreement
+Route::get('jobagreement/{id}/detail', 'JobAgreementController@getDetail')->name('detailJobAgreement');
+Route::get('jobagreement/{id}/detailApplicant', 'JobAgreementController@getDetailApplicant')->name('detailJobAgreementApplicant');
+Route::post('jobagreement/storeapplicant', ['uses' => 'JobAgreementController@storeapplicant', 'before' => 'csrf']);
+Route::post('jobagreement/storestatus', ['uses' => 'JobAgreementController@storestatus', 'before' => 'csrf']);

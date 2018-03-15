@@ -18,6 +18,7 @@ class JobMasterModel extends Model
         'Difficulty',
         'CurrencyID', 
         'HasSeenID',
-        'PriceList'
+        'PriceList',
+        'JobStatus'
     ];
 }

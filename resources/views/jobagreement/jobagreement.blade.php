@@ -19,22 +19,26 @@
                                 <th>No.</th>
                                 <th>Action</th>
                                 <th>Job Title</th>
-                                <th>Company Name</th>
+                                <th>Difficulty</th>
+                                <th>Total Apply</th>
+                                <th>Expired Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($JobAgreementModel as $index => $item)
+                            @foreach($JobMatchSearchModel as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <a class="btn btn-danger col-md-5 my-1" href="{{ url('jobagreement/jobagreementedetail') }}">
+                                        <a class="btn btn-danger col-md-7" href="{{ route('detailJobAgreement', $item->JobID) }}">
                                             <i class="fa fa-user pr-1"></i>Detail
                                         </a>
                                     </td>
                                     <td>{{ $item->JobTitle }}</td>
-                                    <td>{{ $item->CompanyName }}</td>
-                                    <td>Active</td>
+                                    <td>{{ $item->DiffName }}</td>
+                                    <td>{{ $item->HasSeenID }}</td>
+                                    <td>{{ $item->ExpiredDate }}</td>
+                                    <td>{{ $item->StatusName }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

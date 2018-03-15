@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2018 at 01:33 PM
+-- Generation Time: Mar 15, 2018 at 03:07 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -123,7 +123,7 @@ CREATE TABLE `jobmaster` (
   `JCEmailAddress` varchar(50) NOT NULL,
   `Difficulty` varchar(10) NOT NULL,
   `ExpiredDate` varchar(30) NOT NULL,
-  `HasSeenID` varchar(10) NOT NULL,
+  `HasSeenID` int(11) NOT NULL,
   `CurrencyID` int(11) NOT NULL,
   `PriceList` varchar(20) NOT NULL,
   `JobStatus` int(11) NOT NULL,
@@ -136,7 +136,8 @@ CREATE TABLE `jobmaster` (
 --
 
 INSERT INTO `jobmaster` (`JobID`, `JobTitle`, `Description`, `JCEmailAddress`, `Difficulty`, `ExpiredDate`, `HasSeenID`, `CurrencyID`, `PriceList`, `JobStatus`, `created_at`, `updated_at`) VALUES
-(7, 'Rayon', '123', '123@gmail.com', '1', '03/01/2018', '', 1, '123500', 1, '2018-03-13 17:15:18', '2018-03-13 17:32:57');
+(8, 'Rayon', 'test job', '123@gmail.com', '1', '03/09/2018', 1, 1, '123500', 1, '2018-03-15 20:15:40', '2018-03-15 20:38:16'),
+(9, 'susah susah', 'test susah', '123@gmail.com', '1', '03/01/2018', 1, 1, '123500', 2, '2018-03-15 20:31:42', '2018-03-15 20:37:18');
 
 -- --------------------------------------------------------
 
@@ -148,9 +149,18 @@ CREATE TABLE `jobmatchsearch` (
   `JobMatchID` int(11) NOT NULL,
   `JobID` int(11) NOT NULL,
   `JFEmailAddress` varchar(50) NOT NULL,
+  `StatusID` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobmatchsearch`
+--
+
+INSERT INTO `jobmatchsearch` (`JobMatchID`, `JobID`, `JFEmailAddress`, `StatusID`, `created_at`, `updated_at`) VALUES
+(3, 8, '123@gmail.com', 5, '2018-03-15 13:17:41', '2018-03-15 13:18:09'),
+(4, 9, '123@gmail.com', 5, '2018-03-15 13:32:23', '2018-03-15 13:33:10');
 
 -- --------------------------------------------------------
 
@@ -171,7 +181,8 @@ CREATE TABLE `jobmatchskill` (
 --
 
 INSERT INTO `jobmatchskill` (`SkillJobID`, `JobID`, `SkillID`, `created_at`, `updated_at`) VALUES
-(1, 7, 1, '2018-03-13 17:27:45', '2018-03-13 17:27:45');
+(2, 8, 1, '2018-03-15 20:15:55', '2018-03-15 20:15:55'),
+(3, 9, 1, '2018-03-15 20:31:50', '2018-03-15 20:31:50');
 
 -- --------------------------------------------------------
 
@@ -192,7 +203,8 @@ CREATE TABLE `jobmatchtype` (
 --
 
 INSERT INTO `jobmatchtype` (`TypeJobID`, `JobID`, `JobTypeID`, `created_at`, `updated_at`) VALUES
-(7, 7, 1, '2018-03-13 17:15:23', '2018-03-13 17:15:23');
+(8, 8, 1, '2018-03-15 20:15:43', '2018-03-15 20:15:43'),
+(9, 9, 1, '2018-03-15 20:31:45', '2018-03-15 20:31:45');
 
 -- --------------------------------------------------------
 
@@ -280,8 +292,12 @@ CREATE TABLE `masterstatus` (
 --
 
 INSERT INTO `masterstatus` (`StatusID`, `StatusName`) VALUES
-(1, 'draft'),
-(2, 'plan');
+(1, 'Open'),
+(2, 'Closed'),
+(3, 'Active(In Progress)'),
+(4, 'Reviewed'),
+(5, 'Accepted'),
+(6, 'Active(Done)');
 
 -- --------------------------------------------------------
 
@@ -478,22 +494,22 @@ ALTER TABLE `jobfinder`
 -- AUTO_INCREMENT for table `jobmaster`
 --
 ALTER TABLE `jobmaster`
-  MODIFY `JobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `JobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `jobmatchsearch`
 --
 ALTER TABLE `jobmatchsearch`
-  MODIFY `JobMatchID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `JobMatchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `jobmatchskill`
 --
 ALTER TABLE `jobmatchskill`
-  MODIFY `SkillJobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SkillJobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `jobmatchtype`
 --
 ALTER TABLE `jobmatchtype`
-  MODIFY `TypeJobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `TypeJobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --

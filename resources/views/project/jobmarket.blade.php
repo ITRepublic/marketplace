@@ -29,7 +29,7 @@
                         @foreach($JobMasterModel as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td><a class="btn btn-danger col-md-10" href="{{ url('project/jobmarketdetail') }}">
+                                    <td><a class="btn btn-danger col-md-10" href="{{ route('detailJobMarket', $item->JobID) }}">
                                             <i class="fa fa-user pr-1"></i>Detail
                                         </a>
                                     </td>
