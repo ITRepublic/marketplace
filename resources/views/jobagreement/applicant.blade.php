@@ -14,6 +14,10 @@
                 <div class="form-group">
                     <h3>{{ $JobMasterModel->JobTitle }}</h3>
                 </div>
+                <?php
+                    $group = session()->get('group_check');
+                ?>
+
                 <div class="form-group row">
                 {{ Form::label('CompanyName', 'Company Name', array('class' => 'col-sm-4 col-form-label')) }}
                 <div class="col-sm-8">
@@ -41,7 +45,7 @@
                 <div class="form-group row">
                     {{ Form::label('JobExpiredDate', 'Expired Date', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::text('JobExpiredDate', $JobMasterModel->ExpiredDate, array('class' => 'form-control', 'id' => 'datepicker', 'readonly' => 'true')) }}
+                        {{ Form::text('JobExpiredDate', $JobMasterModel->ExpiredDate, array('class' => 'form-control', 'id' => 'expireddatepicker', 'readonly' => 'true')) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -59,7 +63,7 @@
                 <div class="form-group row">
                     {{ Form::label('JobStatus', 'Job Status', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                    {{ Form::select('JobStatus', $JobStatus, null, array('class' => 'form-control', 'id' => 'DdlJobStatus')) }}
+                    {{ Form::select('JobStatus', $JobStatus, null, array('class' => 'form-control', 'id' => 'DdlJobStatus', $group != 'admin' ? '' : 'disabled' => 'true')) }}
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -117,7 +121,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <a class="btn btn-danger btn-sm" href="{{ route('detailJobAgreementApplicant', $item->finderid) }}">
+                                        <a class=<?php $group == 'admin' ? 'disabled' : 'btn btn-danger btn-sm'?> href="{{ route('detailJobAgreementApplicant', $item->finderid) }}">
                                             Detail
                                         </a>
                                     </td>
@@ -154,11 +158,25 @@
                         </tbody>
                     <table>
                 </div>
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                <?php
+                    $group = session()->get('group_check');
+                    if ($group != "admin")
+                    {
+                        ?>
+                            {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                        <?php
+                    }
+                ?>
+                
                 {{ Form::close() }}
             </div>
         </div>
     </div>
 </div>
-
+<script>
+        .disabled {
+            pointer-events: none;
+            cursor: default;
+         }
+    </script>
 @stop

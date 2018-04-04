@@ -24,23 +24,76 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <?php
-                $group = session()->get('group_check');
-                
-                $menulist = DB::table('usermenu')
-                ->select('usermenuid', 'menuname', 'urlroutemenu')
-                ->leftjoin('mastermenu', 'mastermenu.menuid', '=', 'usermenu.menuid')
-                ->where('usermenu.groupid', $group)
-                ->get();
-            ?>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                @foreach($menulist as $index => $value)
+                <?php
+                    $group = session()->get('group_check');
+                    if ($group == "JF")
+                    {
+                        ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url($value->urlroutemenu) }}">{{ $value->menuname }}
+                        <a class="nav-link" href="{{ url('profile') }}">
+                        	Profile
                         </a>
                     </li>
-                @endforeach
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('marketplace') }}">
+                            Search Job
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('history') }}">
+                            History
+                        </a>
+                    </li>
+                        <?php
+                    }
+                    elseif ($group == "JC")
+                    {
+                        ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('jobregistration') }}">
+                            Register Job
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('resume') }}">
+                            Resume
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('companyprofile') }}">
+                            Company Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('jobagreement') }}">       	
+                            Job Agreement
+                        </a>
+                    </li>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url('jobregistration/all') }}">
+                            All Register Job
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('resume/all') }}">
+                            All Resume
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('jobagreement/all') }}">       	
+                            All Job Agreement
+                        </a>
+                    </li>
+                        <?php
+                    };
+                ?>
                     <!-- <li class="nav-item active">
                         <a class="nav-link" href="#">Home</a>
                     </li>

@@ -67,6 +67,14 @@ class JobAgreementController extends Controller
         return view('jobagreement.applicant', array('JobMasterModel' => $JobMasterModel, 'JobApplicantModel' => $JobApplicantModel, 'JobMatchTypeModel' => $JobMatchTypeModel, 'SkillList' => $SkillList, 'JobMatchSearchApplicant' => $JobMatchSearchApplicant, 'JobStatus' => $JobStatus))->withTitle($JobMasterModel->JobTitle);
 
     }
+    public function all()
+    {
+        $JobMatchSearchModel = JobMatchSearchModel::join('jobmaster','jobmatchsearch.JobID', '=', 'jobmaster.JobID')
+        ->join('masterstatus', 'jobmaster.JobStatus', '=', 'masterstatus.StatusID')
+        ->join('masterdifficulty', 'jobmaster.Difficulty', '=', 'masterdifficulty.DiffID')
+        ->get();
+        return view('jobagreement.jobagreement', array('JobMatchSearchModel' => $JobMatchSearchModel))->withTitle('Job Agreement List');
+    }
     public function getDetailApplicant($id)
     {
         $JobID = session()->get('JobID');

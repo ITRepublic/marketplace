@@ -58,6 +58,7 @@
                             </tbody>
                         <table>
                 </div>
+                
                 {{ Form::submit('Approve', array('class' => 'btn btn-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    

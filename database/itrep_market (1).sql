@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2018 at 03:07 PM
+-- Generation Time: Apr 04, 2018 at 08:12 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -106,8 +106,8 @@ CREATE TABLE `jobfinder` (
 --
 
 INSERT INTO `jobfinder` (`finderid`, `UserName`, `Password`, `EmailAddress`, `Address`, `Phone`, `groupid`, `updated_at`, `created_at`) VALUES
-(1, 'vincent123', 'e10adc3949ba59abbe56e057f20f883e', '123@gmail.com', 'bojong indah', '123213123123', 'JF', '2018-02-28 23:42:18', '2017-12-02 01:36:12'),
-(2, 'vincent1', 'e10adc3949ba59abbe56e057f20f883e', 'vincent123@gmail.com', 'bojong indah', '123213123', 'JF', '2017-12-02 14:05:14', '2017-12-02 14:05:14'),
+(1, 'vincent1234', 'e10adc3949ba59abbe56e057f20f883e', '123@gmail.com', 'bojong indahs', '23', 'JF', '2018-04-05 00:54:53', '2017-12-02 01:36:12'),
+(2, 'vincent12', 'e10adc3949ba59abbe56e057f20f883e', 'vincent123@gmail.com', 'bojong indahs', '1232131234', 'JF', '2018-04-05 00:52:39', '2017-12-02 14:05:14'),
 (3, 'Jorjonna', 'e10adc3949ba59abbe56e057f20f883e', 'jorjonna@gmail.com', 'citra 2', '0000', 'JF', '2018-01-21 16:53:28', '2018-01-09 11:06:26');
 
 -- --------------------------------------------------------
@@ -136,7 +136,7 @@ CREATE TABLE `jobmaster` (
 --
 
 INSERT INTO `jobmaster` (`JobID`, `JobTitle`, `Description`, `JCEmailAddress`, `Difficulty`, `ExpiredDate`, `HasSeenID`, `CurrencyID`, `PriceList`, `JobStatus`, `created_at`, `updated_at`) VALUES
-(8, 'Rayon', 'test job', '123@gmail.com', '1', '03/09/2018', 1, 1, '123500', 1, '2018-03-15 20:15:40', '2018-03-15 20:38:16'),
+(8, 'Rayon', 'test job 1', '123@gmail.com', '1', '03/27/2018', 3, 2, '1235600', 2, '2018-03-15 20:15:40', '2018-04-04 23:45:14'),
 (9, 'susah susah', 'test susah', '123@gmail.com', '1', '03/01/2018', 1, 1, '123500', 2, '2018-03-15 20:31:42', '2018-03-15 20:37:18');
 
 -- --------------------------------------------------------
@@ -160,7 +160,9 @@ CREATE TABLE `jobmatchsearch` (
 
 INSERT INTO `jobmatchsearch` (`JobMatchID`, `JobID`, `JFEmailAddress`, `StatusID`, `created_at`, `updated_at`) VALUES
 (3, 8, '123@gmail.com', 5, '2018-03-15 13:17:41', '2018-03-15 13:18:09'),
-(4, 9, '123@gmail.com', 5, '2018-03-15 13:32:23', '2018-03-15 13:33:10');
+(4, 9, '123@gmail.com', 5, '2018-03-15 13:32:23', '2018-03-15 13:33:10'),
+(5, 8, '123@gmail.com', 4, '2018-04-04 16:04:24', '2018-04-04 16:04:24'),
+(6, 8, '123@gmail.com', 4, '2018-04-04 16:20:08', '2018-04-04 16:20:08');
 
 -- --------------------------------------------------------
 
@@ -226,6 +228,29 @@ CREATE TABLE `jobtype` (
 INSERT INTO `jobtype` (`JobTypeID`, `JobTypeDesc`, `created_at`, `updated_at`) VALUES
 (1, 'Backend Programming (API, PHP)', NULL, NULL),
 (2, 'Front End Programming (HTML, CSS)', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `masteradmin`
+--
+
+CREATE TABLE `masteradmin` (
+  `adminid` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `emailaddress` varchar(255) NOT NULL,
+  `updated_at` varchar(30) NOT NULL,
+  `created_at` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `masteradmin`
+--
+
+INSERT INTO `masteradmin` (`adminid`, `username`, `password`, `emailaddress`, `updated_at`, `created_at`) VALUES
+(1, 'vincent123', 'e10adc3949ba59abbe56e057f20f883e', '123@gmail.com', '2018-04-03 22:23:29', '2018-04-03 22:23:29'),
+(2, 'vincenttest', 'e10adc3949ba59abbe56e057f20f883e', '123@gmail.com', '2018-04-03 22:24:26', '2018-04-03 22:24:26');
 
 -- --------------------------------------------------------
 
@@ -429,6 +454,12 @@ ALTER TABLE `jobtype`
   ADD PRIMARY KEY (`JobTypeID`);
 
 --
+-- Indexes for table `masteradmin`
+--
+ALTER TABLE `masteradmin`
+  ADD PRIMARY KEY (`adminid`);
+
+--
 -- Indexes for table `masterdifficulty`
 --
 ALTER TABLE `masterdifficulty`
@@ -499,7 +530,7 @@ ALTER TABLE `jobmaster`
 -- AUTO_INCREMENT for table `jobmatchsearch`
 --
 ALTER TABLE `jobmatchsearch`
-  MODIFY `JobMatchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `JobMatchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `jobmatchskill`
 --
@@ -515,6 +546,11 @@ ALTER TABLE `jobmatchtype`
 --
 ALTER TABLE `jobtype`
   MODIFY `JobTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `masteradmin`
+--
+ALTER TABLE `masteradmin`
+  MODIFY `adminid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `masterdifficulty`
 --

@@ -19,14 +19,23 @@ Route::post('/jobFinder/update', ['uses' => 'ProfileController@store', 'before' 
 // Projects
 Route::get('/projects', 'ProjectCtrl@create');
 
-// Get menu from DB
-$menulist = menurepo::select('usermenuid', 'menuname', 'urlroutemenu', 'routemenu')
-->leftJoin('mastermenu', 'mastermenu.menuid', '=', 'usermenu.menuid')
-->get();
+// Get menu
+Route::get('/profile', 'ProfileController@create');
+Route::get('/marketplace', 'JobMarketController@create');
+Route::get('/jobregistration', 'JobRegistrationController@create');
+Route::get('/resume', 'ResumeController@create');
+Route::get('/companyprofile', 'CompanyProfileController@create');
+Route::get('/history', 'JobHistoryController@create');
+Route::get('/jobagreement', 'JobAgreementController@create');
 
-foreach($menulist as $menu) {
-    Route::get($menu->urlroutemenu,$menu->routemenu);
-}
+// Get Admin menu
+Route::get('/adminlogin', 'AdminPanelController@create');
+Route::post('adminpanel/adminloginconfirm', ['uses' => 'AdminPanelController@store', 'before' => 'csrf']);
+Route::get('adminpanel/register', 'AdminPanelController@createregister');
+Route::post('adminpanel/storeregister', ['uses' => 'AdminPanelController@storeregister', 'before' => 'csrf']);
+Route::get('/jobregistration/all', 'JobMarketController@all');
+Route::get('/resume/all', 'ResumeController@all');
+Route::get('/jobagreement/all', 'JobAgreementController@all');
 
 // Profile
 Route::post('profile/store', ['uses' => 'ProfileController@store', 'before' => 'csrf']);
@@ -48,9 +57,13 @@ Route::post('jobmarketregis/storestep3', ['uses' => 'JobRegistrationController@s
 
 //search job
 Route::get('jobmarket/{id}/detail', 'JobMarketController@getDetail')->name('detailJobMarket');
+Route::get('editdetailJobMarket/{id}/detail', 'JobMarketController@getEditDetail')->name('editdetailJobMarket');
 Route::post('jobmarket/store', ['uses' => 'JobMarketController@store', 'before' => 'csrf']);
 // Resume
 Route::get('resume/{id}/detail', 'ResumeController@getDetail')->name('detailResume');
+Route::get('editdetailResume/{id}/detail', 'ResumeController@getEditDetail')->name('editdetailResume');
+Route::post('resume/store', ['uses' => 'ResumeController@store', 'before' => 'csrf']);
+
 
 //job agreement
 Route::get('jobagreement/{id}/detail', 'JobAgreementController@getDetail')->name('detailJobAgreement');
