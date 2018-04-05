@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Job Creator Register :: IT Republic</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
         <link rel="stylesheet" href="{{ asset('css/common.css') }}">
         <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
     </head>
@@ -18,7 +18,7 @@
 				
 				@include('error.template')
 
-                {{ Form::open(array('url' => 'adminpanel/storeregister', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => 'webadmin/register', 'method' => 'POST')) }}
                 <div class="form-group">
                     <h3>Admin Registration</h3>
                 </div>
@@ -37,12 +37,12 @@
                 <div class="form-group row">
                     {{ Form::label('emailaddress', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
-                        {{ Form::email('emailaddress', old('emailaddress'), array('class' => 'form-control')) }}
+                        {{ Form::email('email_address', old('email_address'), array('class' => 'form-control')) }}
                     </div>
                 </div>                
                 {{ Form::submit('Register', array('class' => 'btn btn-primary col-md-3 my-1')) }}
 
-                <a href="{{ url('/adminlogin') }}" class="btn btn-danger col-md-4 my-1">Back to Admin Login</a>
+                <a href="{{ url('/webadmin') }}" class="btn btn-danger col-md-4 my-1">Back to Admin Login</a>
 
                 {{ Form::close() }}
                    

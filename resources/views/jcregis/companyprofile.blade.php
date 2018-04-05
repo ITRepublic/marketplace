@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid">
         <div class="row" align-items-center>
-            <div class="card col-md-6 offset-md-3">
+            <div class="card col-md-10 offset-md-1">
                 <div class="card-body">
 
                 {{ Form::open(array('url' => 'profile/store', 'method' => 'POST')) }}
@@ -62,7 +62,7 @@
                         <table>
                     </div>
                 </div>
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                {{ Form::submit('Save', array('class' => 'btn btn-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    
                 </div>

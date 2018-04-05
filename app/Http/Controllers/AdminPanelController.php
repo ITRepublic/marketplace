@@ -63,11 +63,11 @@ class AdminPanelController extends Controller
         // store to DB
         $data['username'] = $request->username;
         $data['password'] = md5($request->password);
-        $data['emailaddress'] = $request->emailaddress;
+        $data['email_address'] = $request->emailaddress;
 
         AdminLoginModel::create($data);
 
         // redirect
-        return redirect('/adminlogin')->withSuccess('Thank you for registering. Your data has been saved.');
+        return redirect('/webadmin')->withSuccess('Thank you for registering. Your data has been saved.');
     }
 }

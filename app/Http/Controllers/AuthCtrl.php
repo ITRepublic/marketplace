@@ -64,8 +64,21 @@ class AuthCtrl extends Controller
 
     public function destroy()
     {
+        $group = "";
+        if(session("group_check") == "admin") {
+            $group = "admin";
+        }
+        else {
+            $group = "user";
+        }
+
         session()->flush();
 
-        return redirect()->to('/')->withSuccess('You have been logged out.');
+        if($group != 'admin') {
+            return redirect()->to('/')->withSuccess('You have been logged out.');
+        }
+        else {
+            return redirect()->to('/webadmin')->withSuccess('You have been logged out.');
+        }
     }
 }

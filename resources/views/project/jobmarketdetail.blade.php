@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid">
         <div class="row" align-items-center>
-            <div class="card col-md-6 offset-md-3">
+            <div class="card col-md-10 offset-md-1">
                 <div class="card-body">
 
                 {{ Form::open(array('url' => 'jobmarket/store', 'method' => 'POST')) }}

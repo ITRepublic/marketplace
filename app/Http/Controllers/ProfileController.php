@@ -46,12 +46,12 @@ class ProfileController extends Controller
         $email = $request->email;
         $skillType = SkillTypeModel::where('SkillID', $skillName)->first();
 
-        $skillListModel = SkillListModel::where('SkillID',$skillType->SkillID)->first();
+        $skillListModel = SkillListModel::where('SkillID',$skillType->SkillID)->where('JFEMailAddress',$email)->first();
 
         $data['JFEmailAddress'] = $email;
         $data['SkillID'] =  $skillType->SkillID;
         
-        if(count($skillListModel) == 0) {
+        if($skillListModel == null) {
             $skillList = SkillListModel::create($data);
             return response()->json(array(
                 'data' => $skillList,

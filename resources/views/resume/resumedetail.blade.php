@@ -7,11 +7,9 @@
 @section('content')
 <div class="container-fluid">
     <div class="row" align-items-center>
-        <div class="card col-md-6 offset-md-3">
+        <div class="card col-md-10 offset-md-1">
             <div class="card-body">
 
-                {{ Form::open(array('url' => 'resume/store', 'method' => 'POST')) }}
-                {{ csrf_field() }}
                 {{ Form::hidden('FinderID', $JobFinderModel->finderid, array('id' => 'TxtFinderID')) }}
                 <?php $editsession = session()->get('detailresumesession'); ?> 
                 <div class="form-group">
@@ -67,52 +65,10 @@
                         </tbody>
                     <table>
                 </div>
-                
-               <?php
-                    $group = session()->get('group_check');
-                    if ($group == "admin")
-                    {
-                        if ($editsession == 'view')
-                        {
-                            ?>
-                                <a class="btn btn-primary col-md-3 my-1" href="{{ route('editdetailResume', $JobFinderModel->finderid) }}">
-                                    Edit this resume
-                                </a>
-                            <?php
-                        }else
-                        {
-                            ?>
-                                {{ Form::submit('Submit edit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
-                            <?php
-                        }
-                    }else
-                    {
-                        ?>
-                            {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
-                    <?php
-                    }
-               ?>
                
-                {{ Form::close() }}
                    
             </div>
         </div>
     </div>
 </div>
-    <script>
-        $('#AddSkill').click(function(){
-            var SkillChosen = $("#DdlSkillList").val();
-            var email = $('#email').val();
-
-            jQuery.post('{{ url("/profile/skill/add") }}', {"skill": SkillChosen, "email": email})
-            .then(function(response){
-                if(response.message == 'OK') {
-                    alert('New skill has been added.');
-                }
-                else {
-                    alert(response.message);
-                }
-            });
-        });
-    </script>
 @stop

@@ -10,7 +10,7 @@
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
                 <div class="form-group">
-                    <h3>This is Job Agreement</h3>
+                    <h3>Job Agreement</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
@@ -30,8 +30,8 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <a class="btn btn-danger col-md-7" href="{{ route('detailJobAgreement', $item->JobID) }}">
-                                            <i class="fa fa-user pr-1"></i>Detail
+                                        <a class="btn btn-danger btn-sm" href="{{ route('detailJobAgreement', $item->JobID) }}">
+                                            Detail
                                         </a>
                                     </td>
                                     <td>{{ $item->JobTitle }}</td>

@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Job Finder Register :: IT Republic</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
-        <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-        <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="{{ asset('public/css/common.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
     <div class="container-fluid">

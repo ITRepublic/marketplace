@@ -10,7 +10,7 @@
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
                 <div class="form-group">
-                    <h3>This is Job Agreement History</h3>
+                    <h3>Job Agreement History</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
@@ -27,7 +27,7 @@
                             @foreach($JobHistoryModel as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td><a class="btn btn-danger col-md-5 my-1" href="{{ url('jobhistory/jobhistorydetail') }}">
+                                    <td><a class="btn btn-danger btn-sm col-md-5 my-1" href="{{ url('jobhistory/jobhistorydetail') }}">
                                             <i class="fa fa-user pr-1"></i>Detail
                                         </a>
                                     </td>

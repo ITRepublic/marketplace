@@ -7,16 +7,16 @@
 @section('content')
 <div class="container-fluid">
         <div class="row" align-items-center>
-            <div class="card col-md-6 offset-md-3">
+            <div class="card col-md-10 offset-md-1">
                 <div class="card-body">
 
                 {{ Form::open(array('url' => 'profile/store', 'method' => 'POST')) }}
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <h3>Job Finder Profile</h3>
+                    <h3>My Profile</h3>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('UserName', 'User Name', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('UserName', 'Username', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
                         {{ Form::text('UserName',  $JobFinderModel->UserName , array('class' => 'form-control')) }}
                     </div>
@@ -43,11 +43,12 @@
                 <div class="form-group row">
                     {{ Form::label('SkillList', 'Skill List', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8 form-group">
-                        {{ Form::select('SkillList', $SkillType, null, array('class' => 'form-control', 'id' => 'DdlSkillList')) }}
+                        {{ Form::select('SkillList', $SkillType, null, array('class' => 'form-control', 'id' => 'DdlSkillList')) }} <br>
                         {{ Form::button('Add to List', array('id' => 'AddSkill', 'class' => 'btn btn-primary')) }}
                     </div>
 
                     <div class="table-responsive">
+                        <h3>Skill Lists</h3>
                         <table class="table table-bordered table-condensed">
                             <thead>
                                 <tr>
@@ -66,7 +67,7 @@
                         <table>
                     </div>
                 </div>
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                {{ Form::submit('Save', array('class' => 'btn btn-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    
                 </div>
@@ -82,6 +83,7 @@
             .then(function(response){
                 if(response.message == 'OK') {
                     alert('New skill has been added.');
+                    window.location.reload();
                 }
                 else {
                     alert(response.message);

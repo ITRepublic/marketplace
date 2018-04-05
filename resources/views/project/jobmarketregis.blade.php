@@ -7,13 +7,13 @@
 @section('content')
 <div class="container-fluid">
         <div class="row" align-items-center>
-            <div class="card col-md-6 offset-md-3">
+            <div class="card col-md-10 offset-md-1">
                 <div class="card-body">
 
                 {{ Form::open(array('url' => 'jobmarketregis/storestep1', 'method' => 'POST')) }}
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <h3>This is Job Registration (1st Step)</h3>
+                    <h3>Creating Job (1st Step)</h3>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('JobTitle', 'Job Title', array('class' => 'col-sm-4 col-form-label')) }}
