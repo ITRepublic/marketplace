@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\JobCreateModel;
-use App\JobFinderModel;
+use App\job_create_model;
+use App\job_finder_model;
 
 class AuthCtrl extends Controller
 {
@@ -24,31 +24,31 @@ class AuthCtrl extends Controller
     	$this->validate($request,$rules);
 
         $credentials = [
-            'EmailAddress' => $request->email,
-            'Password' => md5($request->password)
+            'email_address' => $request->email,
+            'password' => md5($request->password)
         ];
 
     	if($request->login_as == 'job_creator') {
-    		$isAuthenticated = JobCreateModel::where($credentials)->first();
+    		$isAuthenticated = job_create_model::where($credentials)->first();
 
             if($isAuthenticated) {
                 session()->put([
-                    'user_id' => $isAuthenticated->CompanyID,
-                    'user_name' => $isAuthenticated->CompanyName,
-                    'user_email' => $isAuthenticated->EmailAddress,
-                    'group_check' => $isAuthenticated->groupid
+                    'user_id' => $isAuthenticated->company_id,
+                    'user_name' => $isAuthenticated->company_name,
+                    'user_email' => $isAuthenticated->email_address,
+                    'group_check' => $isAuthenticated->group_id
                 ]);
             }
         }
     	else if($request->login_as == 'job_finder') {
-    		$isAuthenticated = JobFinderModel::where($credentials)->first();
+    		$isAuthenticated = job_finder_model::where($credentials)->first();
             
             if($isAuthenticated) {
                 session()->put([
-                    'user_id' => $isAuthenticated->finderid,
-                    'user_name' => $isAuthenticated->UserName,
-                    'user_email' => $isAuthenticated->EmailAddress,
-                    'group_check' => $isAuthenticated->groupid
+                    'user_id' => $isAuthenticated->finder_id,
+                    'user_name' => $isAuthenticated->username,
+                    'user_email' => $isAuthenticated->email_address,
+                    'group_check' => $isAuthenticated->group_id
                 ]);
                 
             }
@@ -78,7 +78,7 @@ class AuthCtrl extends Controller
             return redirect()->to('/')->withSuccess('You have been logged out.');
         }
         else {
-            return redirect()->to('/webadmin')->withSuccess('You have been logged out.');
+            return redirect()->to('/web_admin')->withSuccess('You have been logged out.');
         }
     }
 }

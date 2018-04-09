@@ -28,7 +28,7 @@
                 <ul class="navbar-nav mr-auto">
                 <?php
                     $group = session()->get('group_check');
-                    if ($group == "JF")
+                    if ($group == "jf")
                     {
                         ?>
                     <li class="nav-item">
@@ -48,11 +48,11 @@
                     </li>
                         <?php
                     }
-                    elseif ($group == "JC")
+                    elseif ($group == "jc")
                     {
                         ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('jobregistration') }}">
+                        <a class="nav-link" href="{{ url('job_registration') }}">
                             Post Job
                         </a>
                     </li>
@@ -62,12 +62,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('companyprofile') }}">
+                        <a class="nav-link" href="{{ url('company_profile') }}">
                             Company Profile
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('jobagreement') }}">       	
+                        <a class="nav-link" href="{{ url('job_agreement') }}">       	
                             Job Agreement
                         </a>
                     </li>
@@ -77,7 +77,7 @@
                     {
                         ?>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ url('jobregistration/all') }}">
+                    <a class="nav-link" href="{{ url('job_registration/all') }}">
                             All Register Job
                     </a>
                     </li>
@@ -87,7 +87,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('jobagreement/all') }}">       	
+                        <a class="nav-link" href="{{ url('job_agreement/all') }}">       	
                             All Job Agreement
                         </a>
                     </li>

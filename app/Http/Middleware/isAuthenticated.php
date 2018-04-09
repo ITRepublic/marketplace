@@ -16,8 +16,8 @@ class isAuthenticated
     public function handle($request, Closure $next)
     {
         if(!session()->get('user_id')) {
-            if(strpos($_SERVER['REQUEST_URI'], "webadmin") !== false) {
-                return redirect('/webadmin');
+            if(strpos($_SERVER['REQUEST_URI'], "web_admin") !== false) {
+                return redirect('/web_admin');
             }
             else {
                 return redirect('/');
