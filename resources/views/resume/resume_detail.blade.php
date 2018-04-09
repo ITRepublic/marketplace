@@ -40,14 +40,7 @@
                         {{ Form::text('phone', $job_finder_model->phone, array('class' => 'form-control', $edit_session == 'edit' ? '' : 'readonly' => 'true')) }}
                     </div>
                 </div>
-                <!-- <div class="form-group row">
-                {{ Form::label('SkillList', 'Skill List', array('class' => 'col-sm-4 col-form-label')) }}
-                <div class="col-sm-8 form-group">
-                    {{ Form::select('SkillList', $SkillType, null, array('class' => 'form-control', 'id' => 'DdlSkillList', 'disabled' => 'true')) }}
-                    {{ Form::button('Add to List', array('id' => 'AddSkill', $editsession == 'edit' ? '' : 'disabled' => 'true', 'class' => 'btn btn-primary')) }}
-                </div> -->
-
-                <div class="table-responsive">
+                <!-- <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
                         <thead>
                             <tr>
@@ -64,7 +57,7 @@
                             @endforeach
                         </tbody>
                     <table>
-                </div>
+                </div> -->
                
                    
             </div>
