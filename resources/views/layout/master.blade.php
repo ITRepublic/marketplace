@@ -52,8 +52,8 @@
                     {
                         ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('job_registration') }}">
-                            Post Job
+                        <a class="nav-link" href="{{ url('project_list') }}">
+                            Projects
                         </a>
                     </li>
                     <li class="nav-item">
@@ -63,12 +63,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('company_profile') }}">
-                            Company Profile
+                            My Profile
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('job_agreement') }}">       	
-                            Job Agreement
+                            Contracts
                         </a>
                     </li>
                         <?php

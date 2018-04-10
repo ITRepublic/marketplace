@@ -89,6 +89,18 @@ class job_market_controller extends Controller
 
         return view('project.job_market', array('job_master_model' => $job_master_model))->withTitle('Job Marketplace');
     }
+    
+    public function all_per_customer()
+    {
+        $email_id = session()->get('user_email');
+        $job_master_model = job_master_model::join('currency','job_master.currency_id', '=', 'currency.currency_id')
+        ->join('job_creator','job_master.jc_email_address', '=', 'job_creator.email_address')
+        ->join('master_difficulty','job_master.difficulty', '=', 'master_difficulty.diff_id')
+        ->where('jc_email_address', $email_id)
+        ->get();
+
+        return view('project.job_market', array('job_master_model' => $job_master_model))->withTitle('Job Marketplace');
+    }
     public function get_edit_detail($id)
     {
         session()->forget('detail_job_market_session');

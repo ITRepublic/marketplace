@@ -21,7 +21,6 @@ class job_creator_ctrl extends Controller
             'password'      => 'required',
             'company_name'   => 'required',
             'company_address'=> 'required',
-            'credit_card'    => 'required|numeric',
             'company_profile'=> 'required',
             'phone'         => 'required|numeric'
     	];
@@ -33,7 +32,6 @@ class job_creator_ctrl extends Controller
         $data['password'] = md5($request->password);
         $data['company_name'] = $request->company_name;
         $data['company_address'] = $request->company_address;
-        $data['credit_card'] = $request->credit_card;
         $data['company_profile'] = $request->company_profile;
         $data['phone'] = $request->phone;
         $data['group_id'] = 'jc';

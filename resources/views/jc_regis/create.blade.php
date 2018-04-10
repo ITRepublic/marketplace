@@ -18,7 +18,7 @@
 				
 				@include('error.template')
 
-                {{ Form::open(array('url' => 'jobCreator/store', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => 'job_creator/store', 'method' => 'POST')) }}
                 <div class="form-group">
                     <h3>Job Creator Registration</h3>
                 </div>

@@ -26,9 +26,10 @@ Route::group(['middleware' => ['isAuthenticated']], function () {
     Route::get('/projects', 'project_ctrl@create');
 
     // Get menu
+    Route::get('/project_list', 'job_market_controller@all_per_customer');
     Route::get('/profile', 'profile_controller@create');
     Route::get('/marketplace', 'job_market_controller@create');
-    Route::get('/job_registration', 'job_registration_controller@create');
+    
     Route::get('/resume', 'resume_controller@create');
     Route::get('/company_profile', 'company_profile_controller@create');
     Route::get('/history', 'job_history_controller@create');
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['isAuthenticated']], function () {
     Route::post('company_profile/store', ['uses' => 'company_profile_controller@store', 'before' => 'csrf']);
 
     // Job Registration
+    Route::get('/job_registration', 'job_registration_controller@create');
     Route::get('job_market_regis/create_step_2', 'job_registration_controller@create_step_2');
     Route::post('job_market_regis/store_step_1', ['uses' => 'job_registration_controller@store_step_1', 'before' => 'csrf']);
 
