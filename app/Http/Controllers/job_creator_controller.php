@@ -17,12 +17,13 @@ class job_creator_controller extends Controller
 
     	// Validate, if fails automatically return redirect back and show error messages
     	$rules = [
-    		'email_address'  => 'required|email|unique:job_creator,email_address',
-            'password'      => 'required',
             'company_name'   => 'required',
             'company_address'=> 'required',
             'company_profile'=> 'required',
-            'phone'         => 'required|numeric'
+            'phone'         => 'required|numeric',
+            'email_address'  => 'required|email|unique:job_creator,email_address',
+            'password'      => 'required|min:6',
+            'password_confirmation' => 'required|same:password'
     	];
 
     	$this->validate($request, $rules);

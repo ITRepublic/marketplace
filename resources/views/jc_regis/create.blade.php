@@ -10,18 +10,6 @@
             <h3 class="py-3">Job Creator Account</h3> <hr>
 
             <div class="form-group row">
-                {{ Form::label('email_address', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
-                <div class="col-sm-8">
-                    {{ Form::email('email_address', old('email_address'), array('class' => 'form-control')) }}
-                </div>
-            </div>
-            <div class="form-group row">
-                {{ Form::label('password', 'Password', array('class' => 'col-sm-4 col-form-label')) }}
-                <div class="col-sm-8">
-                    {{ Form::password('password', array('id' => 'password', 'class' => 'form-control')) }}
-                </div>
-            </div>
-            <div class="form-group row">
                 {{ Form::label('company_name', 'Company Name', array('class' => 'col-sm-4 col-form-label')) }}
                 <div class="col-sm-8">
                     {{ Form::text('company_name', old('company_name'), array('class' => 'form-control')) }}
@@ -43,6 +31,24 @@
                 {{ Form::label('phone', 'Phone', array('class' => 'col-sm-4 col-form-label')) }}
                 <div class="col-sm-8">
                     {{ Form::text('phone', old('phone'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('email_address', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
+                <div class="col-sm-8">
+                    {{ Form::email('email_address', old('email_address'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('password', 'Password', array('class' => 'col-sm-4 col-form-label')) }}
+                <div class="col-sm-8">
+                    {{ Form::password('password', array('id' => 'password', 'class' => 'form-control')) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('password_confirmation', 'Password Confirmation', array('class' => 'col-sm-4 col-form-label')) }}
+                <div class="col-sm-8">
+                    {{ Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control')) }}
                 </div>
             </div>
 
