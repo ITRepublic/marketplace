@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use App\job_create_model;
 use App\job_finder_model;
 
-class AuthCtrl extends Controller
+class auth_controller extends Controller
 {
     public function create() 
     {
-        return view('index');
+        return view('login');
     }
 
     public function store(Request $request)
@@ -55,7 +55,7 @@ class AuthCtrl extends Controller
         }
 
     	if($isAuthenticated) {
-    		return redirect()->to('/projects');
+    		return redirect()->to('/');
     	}
     	else {
     		return back()->withErrors('Your email & password did not match. Please try again!');
@@ -75,7 +75,7 @@ class AuthCtrl extends Controller
         session()->flush();
 
         if($group != 'admin') {
-            return redirect()->to('/')->withSuccess('You have been logged out.');
+            return redirect()->to('/');
         }
         else {
             return redirect()->to('/web_admin')->withSuccess('You have been logged out.');

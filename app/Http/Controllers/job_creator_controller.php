@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\job_create_model;
 
-class job_creator_ctrl extends Controller
+class job_creator_controller extends Controller
 {
     public function create() 
     {

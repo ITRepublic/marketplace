@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\job_finder_model;
 use Illuminate\Http\Request;
 
-class job_finder_ctrl extends Controller
+class job_finder_controller extends Controller
 {
     public function create()
     {

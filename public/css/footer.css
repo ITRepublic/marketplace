@@ -1,0 +1,32 @@
+.footer {
+	height: 100%;
+	min-height: 100px;
+	background-color: #333;
+	color: #ccc;
+	padding: 20px;
+	font-size: 14px;
+}
+
+.footer .copyright {
+	font-size: 12px;
+	clear: both;
+	text-align: center;
+}
+
+.footer a  {
+	color: #ccc;
+}
+
+.footer a:hover {
+	color: #fff;
+}
+
+.footer ul {
+	margin-left: -55px;
+}
+
+.footer ul li {
+	float: left;
+	padding: 15px;
+	list-style: none;
+}
