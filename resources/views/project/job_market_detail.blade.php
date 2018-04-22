@@ -99,7 +99,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
+                    </table>
                 </div>               
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
@@ -117,7 +117,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
+                    </table>
                 </div>
                <?php
                     $group = session()->get('group_check');

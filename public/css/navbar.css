@@ -1,8 +1,8 @@
-nav .right-menu a {
+nav .right-menu .logout {
 	color: rgba(0,0,0,.5);
 }
 
-nav .right-menu a:hover {
+nav .right-menu .logout:hover {
 	text-decoration: none;
 	color: rgba(0,0,0,.9);
 }

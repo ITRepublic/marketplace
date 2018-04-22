@@ -1,17 +1,19 @@
 <?php
 
 // Authentication
-Route::get('/', 'AuthCtrl@create');
-Route::post('/store', ['uses' => 'AuthCtrl@store', 'before' => 'csrf'])->name('login');
-Route::get('/destroy', 'AuthCtrl@destroy')->name('logout');
+Route::get('/', 'main_controller@create')->name('index');
+
+Route::get('/login', 'auth_controller@create')->name('getLogin');
+Route::post('/login', ['uses' => 'auth_controller@store', 'before' => 'csrf'])->name('login');
+Route::get('/logout', 'auth_controller@destroy')->name('logout');
 
 // Register job creator
-Route::get('/job_creator/create', 'job_creator_ctrl@create');
-Route::post('/job_creator/store', ['uses' => 'job_creator_ctrl@store', 'before' => 'csrf']);
+Route::get('/job_creator/create', 'job_creator_controller@create')->name('createJobCreator');
+Route::post('/job_creator/store', ['uses' => 'job_creator_controller@store', 'before' => 'csrf']);
 
 // Register job finder
-Route::get('/job_finder/create', 'job_finder_ctrl@create');
-Route::post('/job_finder/store', ['uses' => 'job_finder_ctrl@store', 'before' => 'csrf']);
+Route::get('/job_finder/create', 'job_finder_controller@create')->name('createJobFinder');
+Route::post('/job_finder/store', ['uses' => 'job_finder_controller@store', 'before' => 'csrf']);
 Route::post('/job_finder/update', ['uses' => 'profile_controller@store', 'before' => 'csrf']);
 
 // Admin Login and Registration
@@ -22,8 +24,6 @@ Route::post('web_admin/register', ['uses' => 'admin_panel_controller@store_regis
 
 // Middleware check if no session redirect to login page
 Route::group(['middleware' => ['isAuthenticated']], function () {
-    // Projects
-    Route::get('/projects', 'project_ctrl@create');
 
     // Get menu
     Route::get('/project_list', 'job_market_controller@all_per_customer');

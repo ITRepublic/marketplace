@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\job_finder_model;
 use Illuminate\Http\Request;
 
-class job_finder_ctrl extends Controller
+class job_finder_controller extends Controller
 {
     public function create()
     {
@@ -15,16 +15,17 @@ class job_finder_ctrl extends Controller
     public function store(Request $request)
     {
         $rules = [
-    		'username'      => 'required',
-            'password'      => 'required',
-            'email_address'  => 'required|email|unique:job_finder,email_address',
+    		'name'      => 'required',
             'address'       => 'required',
-            'phone'         => 'required|numeric'
+            'phone'         => 'required|numeric',
+            'email_address'  => 'required|email|unique:job_finder,email_address',
+            'password'      => 'required|min:6',
+            'password_confirmation' => 'required|same:password'
     	];
 
         $this->validate($request, $rules);
         //save db
-        $data['username'] = $request->username;
+        $data['username'] = $request->name;
         $data['password'] = md5($request->password);
         $data['email_address'] = $request->email_address;
         $data['address'] = $request->address;

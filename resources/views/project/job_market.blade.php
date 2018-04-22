@@ -86,17 +86,10 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <script>
-    $(document).ready(function() {
-        
-        });
-    });
-</script>
-
 @stop

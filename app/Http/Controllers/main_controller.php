@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class project_ctrl extends Controller
+class main_controller extends Controller
 {
     public function create() {
-        return view('project.create')->withTitle('Projects');
+    	return view('index');
     }
 }
