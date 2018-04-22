@@ -71,8 +71,6 @@ class job_agreement_controller extends Controller
                     ->orWhere('status_id', '=', '4');
             })
         ->count();
-        
-       
 
         $payment_status = '1';
         $job_master_detail_milestone_model = job_master_detail_milestone_model::where('job_id', $id)
@@ -80,12 +78,13 @@ class job_agreement_controller extends Controller
         if ($job_master_detail_milestone_model_check > 0){
             $payment_status = '2';
         }
+        else {
+            $job_master_detail_milestone_model = [];
+        }
         
 
         $job_agreement_status = payment_type::where('payment_type_id', $payment_status)
-        ->get(['master_payment_type.payment_type_name'])->first();
-
-        
+        ->select('master_payment_type.payment_type_name')->first();
         
         $job_status = master_status::wherein('status_id', array(1, 2, 3, 6))
         ->pluck('status_name', 'status_id');
@@ -298,7 +297,7 @@ class job_agreement_controller extends Controller
         }
         
         session()->forget('result');
-        return redirect()->to('/project_list')->withSuccess('Job Status Update is done.');
+        return redirect()->to('/job_agreement')->withSuccess('Job Status Update is done.');
     }
 
     public function update_status_review($id, $job_id)

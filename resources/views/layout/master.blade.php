@@ -36,18 +36,18 @@
                     {
                         ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('profile') }}">
-                        	Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('marketplace') }}">
-                            Search Job
+                            Search Projects
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('history') }}">
-                            History
+                            Projects History
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('profile') }}">
+                        	My Profile
                         </a>
                     </li>
                         <?php
@@ -144,7 +144,9 @@
         
         <div class="content-wrapper">
             @include('error.template')
-            @yield('content')
+            <div class="container-fluid my-3">
+                @yield('content')
+            </div>
         </div>
 
         <div class="footer">

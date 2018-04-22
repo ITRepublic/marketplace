@@ -132,7 +132,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
+                    </table>
                 </div>
                 <div class="form-group">
                 
@@ -153,7 +153,7 @@
                                     <div class="form-inline col-sm-10">
                                         {{ Form::text('milestone_detail_'.$counter, $item->milestone_detail, array('class' => 'form-control col-sm-7', 'readonly' => 'true')) }}
                                             &nbsp;&nbsp;Price:&nbsp;&nbsp;
-                                        {{ Form::text('milestone_price_'.$counter, $item->milestone_price, array('class' => 'form-control col-sm-2 milestone_price_list numeric', 'readonly' => 'true', 'id' => 'milestone_price_'.$counter)) }}
+                                        {{ Form::text('milestone_price_'.$counter, number_format($item->milestone_price), array('class' => 'form-control col-sm-2 milestone_price_list numeric', 'readonly' => 'true', 'id' => 'milestone_price_'.$counter)) }}
                                         &nbsp;&nbsp;&nbsp;<?php 
                                                         if ($status_detail == '3' && $group == 'jf'){
                                                             ?>
@@ -198,14 +198,14 @@
                 <div class="form-group row milestonediv">
                     {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
                         <div class="form-inline col-sm-7">
-                            {{ Form::label('total_milestone_price_label', $job_master_model->price_list, array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
+                            {{ Form::label('total_milestone_price_label', number_format($total_milestone_price), array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
                         </div>                 
                 </div>
                 <?php
                     if ($group != "admin")
                     {
                         ?>
-                            {{ Form::submit($group == 'jc' ? 'Submit' : 'Accept the terms', array('class' => 'btn btn-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            {{ Form::submit($group == 'jc' ? 'End contract' : 'Accept the terms', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                         <?php
                     }
                 ?>

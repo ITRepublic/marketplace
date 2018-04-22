@@ -59,7 +59,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        <table>
+                        </table>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('currency', 'Currency', array('class' => 'col-sm-4 col-form-label')) }}
@@ -81,9 +81,9 @@
                 </div>
 
                 <div class="form-group row milestonediv">
-                    <input type='button' value='Add Milestone' id='add_milestone' class='btn btn-primary col-md-3 my-1'>
+                    <input type='button' value='Add Milestone' id='add_milestone' class='btn btn-outline-primary col-md-3 my-1'>
                     &nbsp;&nbsp;
-                    <input type='button' value='Remove Milestone' id='remove_milestone' class='btn btn-danger col-md-3 my-1'>
+                    <input type='button' value='Remove Milestone' id='remove_milestone' class='btn btn-outline-danger col-md-3 my-1'>
                 </div>
                 <div id="TextBoxesGroup" class="milestonediv">
                     <div id="milestone_detail_1" class="form-group row">
@@ -102,7 +102,7 @@
                     {{ Form::label('total_milestone_price_label', '0', array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
                     </div>                 
                 </div>
-                {{ Form::submit('Hire', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                {{ Form::submit('Hire', array('class' => 'btn btn-outline-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    
                 </div>

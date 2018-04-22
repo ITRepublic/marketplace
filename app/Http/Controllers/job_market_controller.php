@@ -36,7 +36,7 @@ class job_market_controller extends Controller
     {
         $data['job_id'] = $request->job_id;
         $edit_session = session()->get('detail_job_market_session');
-        $finishtext = 'Editting job is done.';
+        $finishtext = 'Editing job is done.';
         if ($edit_session == 'edit')
         {
             $data['description'] = $request->job_description;
@@ -68,14 +68,8 @@ class job_market_controller extends Controller
                 $jm = job_match_search_model::create($data);
                 $finishtext = 'Job Apply is done.';
             }
-
-            
-            
-            
         }
-        return redirect()->to('/')->withSuccess($finishtext);
-
-        
+        return redirect()->to('/project_list')->withSuccess($finishtext);       
     }
     public function get_detail($id)
     {

@@ -44,7 +44,7 @@
                     {{ Form::label('skill_list', 'Skill List', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8 form-group">
                         {{ Form::select('skill_list', $skill_type, null, array('class' => 'form-control', 'id' => 'ddl_skill_list')) }} <br>
-                        {{ Form::button('Add to List', array('id' => 'add_skill', 'class' => 'btn btn-primary')) }}
+                        {{ Form::button('Add to List', array('id' => 'add_skill', 'class' => 'btn btn-outline-primary')) }}
                     </div>
 
                     <div class="table-responsive">
@@ -64,10 +64,10 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        <table>
+                        </table>
                     </div>
                 </div>
-                {{ Form::submit('Save', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                {{ Form::submit('Update', array('class' => 'btn btn-outline-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    
                 </div>

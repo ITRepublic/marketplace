@@ -19,7 +19,7 @@ class resume_controller extends Controller
         session()->forget('detail_resume_session');
         session()->put('detail_resume_session', 'view');
         $job_finder_model = job_finder_model::all();
-        return view('resume.resume_grid', array('job_finder_model' => $job_finder_model))->withTitle('Job Finder List');
+        return view('resume.resume_grid', array('job_finder_model' => $job_finder_model))->withTitle('Resume');
     }
     public function store(Request $request)
     { 
@@ -41,7 +41,7 @@ class resume_controller extends Controller
         session()->forget('detail_resume_session');
         session()->put('detail_resume_session', 'view');
         $job_finder_model = job_finder_model::all();
-        return view('resume.resume_grid', array('job_finder_model' => $job_finder_model))->withTitle('Job Finder List');
+        return view('resume.resume_grid', array('job_finder_model' => $job_finder_model))->withTitle('Resume');
     }
     public function get_detail($id)
     {

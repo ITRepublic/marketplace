@@ -5,12 +5,11 @@
 @stop
 
 @section('content')
-<div class="container-fluid">
     <div class="row" align-items-center>
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
                 <div class="form-group">
-                    <h3>Resume</h3>
+                    <h3>{{$title}}</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
@@ -37,7 +36,7 @@
                                         if ($group == "jc" && $edit_session == "hire")
                                         {
                                             ?>
-                                                <a class="btn btn-success btn-sm" href="{{ route('get_detail_applicant_job_market', [$item->finder_id, $item->job_id]) }}">
+                                                <a class="btn btn-outline-success btn-sm" href="{{ route('get_detail_applicant_job_market', [$item->finder_id, $item->job_id]) }}">
                                                     Hire
                                                 </a>
                                                 
@@ -45,7 +44,7 @@
                                         }else
                                         {
                                             ?>
-                                                <a class="btn btn-danger btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
+                                                <a class="btn btn-outline-dark btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
                                                     Detail
                                                 </a>
                                             <?php
@@ -56,12 +55,9 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
 @stop
