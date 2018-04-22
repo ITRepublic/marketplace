@@ -144,7 +144,9 @@
         
         <div class="content-wrapper">
             @include('error.template')
-            @yield('content')
+            <div class="container-fluid my-3">
+                @yield('content')
+            </div>
         </div>
 
         <div class="footer">

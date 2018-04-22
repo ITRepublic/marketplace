@@ -96,7 +96,7 @@ class job_registration_controller extends Controller
 
         $job_type_list_model = job_match_type_model::where('job_id', $job_id)->where('job_type_id', $job_type_id)->first();
         
-        if(count($job_type_list_model) == 0) {
+        if($job_type_list_model == null) {
             $data['job_id'] = $job_id;
             $data['job_type_id'] = $job_type_id;
             $job_match_type_model = job_match_type_model::create($data);
@@ -127,7 +127,7 @@ class job_registration_controller extends Controller
             ['description', '=', $description]
             ])->first();
 
-        return redirect('job_market_regis/create_step_3')->withSuccess('Next to second step.');
+        return redirect('job_market_regis/create_step_3')->withSuccess('Next to third step.');
     }
     public function create_step_3()
     {
@@ -161,7 +161,7 @@ class job_registration_controller extends Controller
 
         $skill_list_model = job_skill_req_model::where('job_id', $job_id)->where('skill_id', $skill_type_id)->first();
         
-        if(count($skill_list_model) == 0) {
+        if($skill_list_model == null) {
             $data['job_id'] = $job_id;
             $data['skill_id'] = $skill_type_id;
             $skill_list = job_skill_req_model::create($data);

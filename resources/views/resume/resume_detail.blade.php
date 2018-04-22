@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
-<div class="container-fluid">
     <div class="row" align-items-center>
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
@@ -56,12 +55,9 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    <table>
-                </div>
-               
-                   
+                    </table>
+                </div> 
             </div>
         </div>
     </div>
-</div>
 @stop
