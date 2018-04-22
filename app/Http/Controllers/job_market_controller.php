@@ -36,7 +36,7 @@ class job_market_controller extends Controller
     {
         $data['job_id'] = $request->job_id;
         $edit_session = session()->get('detail_job_market_session');
-        $finishtext = 'Editting job is done.';
+        $finishtext = 'Editing job is done.';
         if ($edit_session == 'edit')
         {
             $data['description'] = $request->job_description;
@@ -73,7 +73,7 @@ class job_market_controller extends Controller
             
             
         }
-        return redirect()->to('/projects')->withSuccess($finishtext);
+        return redirect()->to('/project_list')->withSuccess($finishtext);
 
         
     }

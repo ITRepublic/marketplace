@@ -44,7 +44,7 @@
                                         }else
                                         {
                                             ?>
-                                                <a class="btn btn-outline-primary btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
+                                                <a class="btn btn-outline-dark btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
                                                     Detail
                                                 </a>
                                             <?php

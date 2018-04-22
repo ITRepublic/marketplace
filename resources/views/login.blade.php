@@ -9,24 +9,34 @@
                 <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     
-                    <div class="form-group">
-                        <label>Login As</label>
-                        <select name="login_as" class="form-control">
-                            <option value="job_creator">Job Creator</option>
-                            <option value="job_finder">Job Finder</option>
-                        </select>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Login as</label>
+                        <div class="col-md-10">
+                            <div class="form-check">
+                                <input type="radio" name="login_as" id="jobcreator" value="job_creator" checked>
+                                <label class="form-check-label" for="jobcreator">
+                                    Job Creator
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="login_as" id="jobfinder" value="job_finder">
+                                <label class="form-check-label" for="jobfinder">
+                                    Job Finder
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="email" name="email" class="form-control">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">E-mail</label>
+                        <div class="col-md-10"><input type="email" name="email" class="form-control" placeholder="input your email" value="{{ old('email') }}"></div>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-md-10"><input type="password" name="password" class="form-control" placeholder="input your password"></div>
                     </div>
                     <div class="form-group">
                         <p><a href="#" style="font-size: 12px;">Forgot password?</a></p>
-                        <button type="submit" class="btn btn-primary col-md-3">Login</button>
+                        <button type="submit" class="btn btn-outline-primary col-md-2">Login</button>
                     </div>
                     {{-- <div class="form-group">
                         <label>Create Account:</label> <br>

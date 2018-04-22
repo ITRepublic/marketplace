@@ -203,6 +203,6 @@ class job_registration_controller extends Controller
             ])->first();
         $jm_update = job_master_model::where('job_id', $job_master_model->job_id)->update($data);
         session()->forget('result');
-        return redirect()->to('/projects')->withSuccess('Job Registration is done.');
+        return redirect()->to('/project_list')->withSuccess('Job Registration is done.');
     }
 }

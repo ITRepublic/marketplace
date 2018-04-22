@@ -59,10 +59,10 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        <table>
+                        </table>
                     </div>
                 </div>
-                {{ Form::submit('Save', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                {{ Form::submit('Update', array('class' => 'btn btn-outline-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    
                 </div>
