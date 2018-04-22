@@ -73,7 +73,7 @@ class job_market_controller extends Controller
             
             
         }
-        return redirect()->to('/projects')->withSuccess($finishtext);
+        return redirect()->to('/')->withSuccess($finishtext);
 
         
     }
@@ -117,7 +117,7 @@ class job_market_controller extends Controller
             ['job_status', '=', '1']
             ])
         ->get();
-
+        
         return view('project.job_market', array('job_master_model' => $job_master_model))->withTitle('Job Marketplace');
     }
     public function get_edit_detail($id)

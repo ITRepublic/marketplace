@@ -73,6 +73,13 @@
                         {{ Form::select('payment_type', $payment_type, null, array('class' => 'form-control', 'id' => 'ddl_payment_type')) }}
                     </div>                 
                 </div>
+                <div class="form-group row fulldiv">
+                    {{ Form::label('total_price', 'Total Full Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
+                    <div class="form-inline col-sm-7">
+                        {{ Form::label('total_price_label', $job_master_model->price_list, array('class' => 'col-sm-5 col-form-label', 'id' => 'total_price_label')) }}
+                    </div>                 
+                </div>
+
                 <div class="form-group row milestonediv">
                     <input type='button' value='Add Milestone' id='add_milestone' class='btn btn-primary col-md-3 my-1'>
                     &nbsp;&nbsp;
@@ -91,6 +98,7 @@
                 <div class="form-group row milestonediv">
                 {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
                     <div class="form-inline col-sm-7">
+                    
                     {{ Form::label('total_milestone_price_label', '0', array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
                     </div>                 
                 </div>
@@ -128,8 +136,11 @@
     $('#ddl_payment_type').change(function(){
             if($(this).val() == '1'){
                 $(".milestonediv").hide();
+                $(".fulldiv").show();
+                
             }else{
                 $(".milestonediv").show();
+                $(".fulldiv").hide();
             }
         })
         $('#counter_detail_milestone').val('1');

@@ -75,16 +75,15 @@ class job_agreement_controller extends Controller
        
 
         $payment_status = '1';
-        
+        $job_master_detail_milestone_model = job_master_detail_milestone_model::where('job_id', $id)
+        ->get();
         if ($job_master_detail_milestone_model_check > 0){
             $payment_status = '2';
-            $job_master_detail_milestone_model = job_master_detail_milestone_model::where('job_id', $id)
-            ->get();
         }
         
 
         $job_agreement_status = payment_type::where('payment_type_id', $payment_status)
-        ->get(['master_payment_type.payment_type_name']);
+        ->get(['master_payment_type.payment_type_name'])->first();
 
         
         
@@ -160,7 +159,8 @@ class job_agreement_controller extends Controller
                 $completed_string = $milestone_detail . "+" . $milestone_price;
                 $milestone_detail_array[] = $completed_string;
             }
-    
+            $total_new_price = '0';
+            
             foreach($milestone_detail_array as $value) {
 
                 $split_detail_milestone_string = explode('+', $value, 2);
@@ -170,9 +170,15 @@ class job_agreement_controller extends Controller
                 $data['job_id'] = $job_id;
                 $data['milestone_detail'] = $detail_milestone;
                 $data['milestone_price'] = $price_milestone;
+                $total_new_price = $total_new_price + $price_milestone;
+
                 $data['status_id'] = '6';
                 $jd = job_master_detail_milestone_model::create($data);
             }
+            $new_data_price['price_list'] = $total_new_price;
+            $ju_update = job_master_model::where([
+                ['job_id', '=', $job_id]
+                ])->update($new_data_price);
         }    
         
         
@@ -242,7 +248,7 @@ class job_agreement_controller extends Controller
         
 
         $job_agreement_status = payment_type::where('payment_type_id', $payment_status)
-        ->get(['master_payment_type.payment_type_name']);
+        ->get(['master_payment_type.payment_type_name'])->first();
 
         
         
@@ -292,7 +298,7 @@ class job_agreement_controller extends Controller
         }
         
         session()->forget('result');
-        return redirect()->to('/projects')->withSuccess('Job Status Update is done.');
+        return redirect()->to('/project_list')->withSuccess('Job Status Update is done.');
     }
 
     public function update_status_review($id, $job_id)

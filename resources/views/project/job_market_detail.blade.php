@@ -130,7 +130,14 @@
                                 Delete
                             </a>
                         <?php
-                    }else
+                    }
+                    elseif($group == "jc" && $edit_session == 'view')
+                    {
+                        ?>
+                            
+                        <?php
+                    }
+                    else
                     {
                         ?>
                             {{ Form::submit('Apply this job', array('class' => 'btn btn-primary col-sm-2')) }}
@@ -144,5 +151,10 @@
             </div>
         </div>
     </div>
-
+    <script>
+        .disabled {
+            pointer-events: none;
+            cursor: default;
+         }
+    </script>
 @stop

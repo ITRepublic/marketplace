@@ -136,7 +136,7 @@
                 </div>
                 <div class="form-group">
                 
-                    <h3>Payment Type {{ $job_agreement_status}}</h3>
+                    <h3>Payment Type {{ $job_agreement_status->payment_type_name}}</h3>
                 </div>
                 <?php  
                 $counter = 1;
@@ -178,6 +178,13 @@
                                                             <?php
                                                         }
                                                     ?>
+                                                    <?php if($status_detail == '5')
+                                                        {
+                                                            ?>
+                                                                Done
+                                                            <?php
+                                                        }
+                                                    ?>
                                         
                                     </div>
                                 </div>
@@ -191,7 +198,7 @@
                 <div class="form-group row milestonediv">
                     {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
                         <div class="form-inline col-sm-7">
-                            {{ Form::label('total_milestone_price_label', $total_milestone_price, array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
+                            {{ Form::label('total_milestone_price_label', $job_master_model->price_list, array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
                         </div>                 
                 </div>
                 <?php

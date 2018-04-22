@@ -150,9 +150,8 @@ class job_registration_controller extends Controller
         ->where('job_id', $job_master_model->job_id)
         ->get(['skill_type.skill_type']);
         $skill_type = skill_type_model::pluck('skill_type', 'skill_id');
-        $job_status = master_status::pluck('status_name', 'status_id');
         $currency = master_currency::pluck('currency_name', 'currency_id');
-        return view('project.third_job_market_regis', array('job_master_model' => $job_master_model, 'job_match_type_model' => $job_match_type_model, 'skill_type' => $skill_type, 'skill_list' => $skill_list, 'job_status' => $job_status, 'currency' => $currency))->withTitle('Job Registration');
+        return view('project.third_job_market_regis', array('job_master_model' => $job_master_model, 'job_match_type_model' => $job_match_type_model, 'skill_type' => $skill_type, 'skill_list' => $skill_list, 'currency' => $currency))->withTitle('Job Registration');
     }
     public function add_skill(Request $request)
     {
@@ -181,13 +180,12 @@ class job_registration_controller extends Controller
     public function store_step_3(Request $request)
     {
         $rules = [
-            'job_status'      => 'required',
             'currency'       => 'required',
             'job_price'       => 'required'
     	];
         $this->validate($request, $rules);
         //save db
-        $data['job_status'] = $request->job_status;
+        $data['job_status'] = "1";
         $data['currency_id'] = $request->currency;
         $data['price_list'] = $request->job_price;
 
@@ -203,6 +201,6 @@ class job_registration_controller extends Controller
             ])->first();
         $jm_update = job_master_model::where('job_id', $job_master_model->job_id)->update($data);
         session()->forget('result');
-        return redirect()->to('/projects')->withSuccess('Job Registration is done.');
+        return redirect()->to('/project_list')->withSuccess('Job Registration is done.');
     }
 }

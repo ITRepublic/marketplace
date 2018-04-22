@@ -35,12 +35,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('job_status', 'Job Status', array('class' => 'col-sm-4 col-form-label')) }}
-                    <div class="col-sm-8">
-                    {{ Form::select('job_status', $job_status, null, array('class' => 'form-control', 'id' => 'ddl_job_status')) }}
-                    </div>
-                </div>
-                <div class="form-group row">
                     {{ Form::label('currency', 'Currency', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
                     {{ Form::select('currency', $currency, null, array('class' => 'form-control', 'id' => 'ddl_currency')) }}

@@ -37,7 +37,7 @@ class job_history_controller extends Controller
     public function job_history_detail($id)
     {
         session()->forget('detail_job_agreement_session');
-        session()->put('detail_job_agreement_session', 'approve');
+        session()->put('detail_job_agreement_session', 'edit');
 
         $job_master_model = job_master_model::join('master_status','job_master.job_status', '=', 'master_status.status_id')
         ->join('currency', 'job_master.currency_id', '=', 'currency.currency_id')
@@ -68,8 +68,11 @@ class job_history_controller extends Controller
         $job_master_detail_milestone_model_check = job_master_detail_milestone_model::where('job_id', $id)
         ->where(function($query)
             {
-                $query->where('status_id', '=', '3')
-                    ->orWhere('status_id', '=', '4');
+                $query->where('status_id', '=', '2')
+                    ->orWhere('status_id', '=', '3')
+                    ->orWhere('status_id', '=', '4')
+                    ->orWhere('status_id', '=', '5')
+                    ->orWhere('status_id', '=', '6');
             })
         ->count();
         
@@ -87,11 +90,11 @@ class job_history_controller extends Controller
         
 
         $job_agreement_status = payment_type::where('payment_type_id', $payment_status)
-        ->get(['master_payment_type.payment_type_name']);
+        ->get(['master_payment_type.payment_type_name'])->first();
 
         
         
-        $job_status = master_status::wherein('status_id', array(1, 2, 3, 6))
+        $job_status = master_status::wherein('status_id', array(1, 2, 3,4,5, 6))
         ->pluck('status_name', 'status_id');
         
 
