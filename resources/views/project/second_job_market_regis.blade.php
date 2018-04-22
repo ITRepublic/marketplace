@@ -35,13 +35,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                {{ Form::label('difficulty', 'Difficulty', array('class' => 'col-sm-4 col-form-label')) }}
-                    <div class="col-sm-8 form-group">
-                        {{ Form::select('difficulty', $difficulty, null, array('class' => 'form-control', 'id' => 'ddl_difficulty')) }}
-                    </div>
-                    
-                </div>
-                <div class="form-group row">
                 {{ Form::label('job_type', 'Job Type', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8 form-group">
                         {{ Form::select('job_type', $job_type, null, array('class' => 'form-control', 'id' => 'ddl_job_type')) }}

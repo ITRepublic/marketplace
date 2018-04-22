@@ -7,7 +7,6 @@ use App\skill_type_model;
 use App\skill_list_model;
 use App\job_create_model;
 use App\job_finder_model;
-use App\job_match_model;
 use App\job_type_model;
 use App\job_match_type_model;
 use App\job_skill_req_model;
@@ -27,7 +26,6 @@ class job_market_controller extends Controller
         $job_finder_model = job_finder_model::where('email_address', $email_id)->first();
         $job_master_model = job_master_model::join('currency','job_master.currency_id', '=', 'currency.currency_id')
         ->join('job_creator','job_master.jc_email_address', '=', 'job_creator.email_address')
-        ->join('master_difficulty','job_master.difficulty', '=', 'master_difficulty.diff_id')
         ->where('job_master.job_status', '1')
         ->get();
         
@@ -38,6 +36,7 @@ class job_market_controller extends Controller
     {
         $data['job_id'] = $request->job_id;
         $edit_session = session()->get('detail_job_market_session');
+        $finishtext = 'Editting job is done.';
         if ($edit_session == 'edit')
         {
             $data['description'] = $request->job_description;
@@ -54,8 +53,27 @@ class job_market_controller extends Controller
     
             $jm_update = job_master_model::where('job_id', $data['job_id'])->update($data_update);
             
+            $data['jf_email_address'] = session()->get('user_email');
+            $data['status_id'] = '1';
+            
+            $job_match_search_model = job_match_search_model::where([
+                ['job_id', '=', $data['job_id']],
+                ['jf_email_address', '=', session()->get('user_email')]
+            ])
+            ->count();
+
+            $finishtext = 'You have applied this job before.';
+
+            if($job_match_search_model == 0){
+                $jm = job_match_search_model::create($data);
+                $finishtext = 'Job Apply is done.';
+            }
+
+            
+            
+            
         }
-        return redirect()->to('/projects')->withSuccess('Job Apply is done.');
+        return redirect()->to('/projects')->withSuccess($finishtext);
 
         
     }
@@ -84,7 +102,6 @@ class job_market_controller extends Controller
     {
         $job_master_model = job_master_model::join('currency','job_master.currency_id', '=', 'currency.currency_id')
         ->join('job_creator','job_master.jc_email_address', '=', 'job_creator.email_address')
-        ->join('master_difficulty','job_master.difficulty', '=', 'master_difficulty.diff_id')
         ->get();
 
         return view('project.job_market', array('job_master_model' => $job_master_model))->withTitle('Job Marketplace');
@@ -95,8 +112,10 @@ class job_market_controller extends Controller
         $email_id = session()->get('user_email');
         $job_master_model = job_master_model::join('currency','job_master.currency_id', '=', 'currency.currency_id')
         ->join('job_creator','job_master.jc_email_address', '=', 'job_creator.email_address')
-        ->join('master_difficulty','job_master.difficulty', '=', 'master_difficulty.diff_id')
-        ->where('jc_email_address', $email_id)
+        ->where([
+            ['jc_email_address', '=', $email_id],
+            ['job_status', '=', '1']
+            ])
         ->get();
 
         return view('project.job_market', array('job_master_model' => $job_master_model))->withTitle('Job Marketplace');

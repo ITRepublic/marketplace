@@ -31,9 +31,27 @@
                                     <td>{{ $item->username }}</td>
                                     <td>4</td>
                                     <td>
-                                        <a class="btn btn-danger btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
-                                            Detail
-                                        </a>
+                                    <?php
+                                        $edit_session = session()->get('detail_resume_session');
+                                        $group = session()->get('group_check');
+                                        if ($group == "jc" && $edit_session == "hire")
+                                        {
+                                            ?>
+                                                <a class="btn btn-success btn-sm" href="{{ route('get_detail_applicant_job_market', [$item->finder_id, $item->job_id]) }}">
+                                                    Hire
+                                                </a>
+                                                
+                                            <?php
+                                        }else
+                                        {
+                                            ?>
+                                                <a class="btn btn-danger btn-sm" href="{{ route('detail_resume', $item->finder_id) }}">
+                                                    Detail
+                                                </a>
+                                            <?php
+                                        }
+                                    ?>
+                                        
                                     </td>
                                 </tr>
                             @endforeach

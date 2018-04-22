@@ -9,7 +9,6 @@ use App\job_create_model;
 use App\job_type_model;
 use App\job_match_type_model;
 use App\job_skill_req_model;
-use App\master_difficulty;
 use App\master_status;
 use App\master_currency;
 
@@ -41,7 +40,7 @@ class job_registration_controller extends Controller
         $data['jc_email_address'] = $request->email_address;
         $data['description'] = $request->description;
         $data['expired_date'] = $request->expired_date;
-        $data['difficulty'] = '';
+        $data['payment_type_id']= '1';
         $data['currency_id'] = '0';
         $data['has_seen_id'] = '0';
         $data['price_list'] = '';
@@ -83,13 +82,12 @@ class job_registration_controller extends Controller
             ['description', '=', $description]
             ])->first();
         $job_type = job_type_model::pluck('job_type_desc', 'job_type_id');
-        $difficulty = master_difficulty::pluck('diff_name', 'diff_id');
 
         $job_match_type_model = job_match_type_model::join('job_type','job_match_type.job_type_id', '=', 'job_type.job_type_id')
         ->where('job_id', $job_master_model->job_id)
         ->get(['job_type.job_type_desc']);
 
-        return view('project.second_job_market_regis', array('difficulty' => $difficulty, 'job_master_model' => $job_master_model, 'job_type' => $job_type, 'job_match_type_model' => $job_match_type_model))->withTitle('Job Registration');
+        return view('project.second_job_market_regis', array('job_master_model' => $job_master_model, 'job_type' => $job_type, 'job_match_type_model' => $job_match_type_model))->withTitle('Job Registration');
     }
     public function add_job_type(Request $request)
     {
@@ -117,13 +115,6 @@ class job_registration_controller extends Controller
     }
     public function store_step_2(Request $request)
     {
-        $rules = [
-            'difficulty'      => 'required'
-    	];
-        $this->validate($request, $rules);
-
-        $data['difficulty'] = $request->difficulty;
-
         $result = session()->get('result');
         $split_job_string = explode('+', $result, 3);
         $job_title = $split_job_string[0];
@@ -135,7 +126,7 @@ class job_registration_controller extends Controller
             ['jc_email_address', '=', $jc_email_address],
             ['description', '=', $description]
             ])->first();
-        $jm_update = job_master_model::where('job_id', $job_master_model->job_id)->update($data);
+
         return redirect('job_market_regis/create_step_3')->withSuccess('Next to second step.');
     }
     public function create_step_3()
@@ -146,7 +137,7 @@ class job_registration_controller extends Controller
         $jc_email_address = $split_job_string[1];
         $description = $split_job_string[2];
         $job_master_model = job_master_model::where([
-            ['jobt_itle', '=', $job_title],
+            ['job_title', '=', $job_title],
             ['jc_email_address', '=', $jc_email_address],
             ['description', '=', $description]
             ])->first();

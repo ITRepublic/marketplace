@@ -19,7 +19,7 @@
                                 <th>No.</th>
                                 <th>Action</th>
                                 <th>Job Title</th>
-                                <th>User Name</th>
+                                <th>Company Name</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -27,13 +27,13 @@
                             @foreach($job_history_model as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td><a class="btn btn-danger btn-sm col-md-5 my-1" href="{{ url('job_history/job_history_detail') }}">
+                                    <td><a class="btn btn-info btn-sm col-md-5 my-1" href="{{ route('job_history_detail', $item->job_id) }}">
                                             <i class="fa fa-user pr-1"></i>Detail
                                         </a>
                                     </td>
                                     <td>{{ $item->job_title }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>Active</td>
+                                    <td>{{ $item->company_name }}</td>
+                                    <td>{{ $item->status_name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

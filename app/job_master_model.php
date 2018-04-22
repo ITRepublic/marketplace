@@ -15,10 +15,10 @@ class job_master_model extends Model
         'description',
         'expired_date',
         'jc_email_address', 
-        'difficulty',
         'currency_id', 
         'has_seen_id',
         'price_list',
-        'job_status'
+        'job_status',
+        'payment_type_id'
     ];
 }

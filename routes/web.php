@@ -58,10 +58,13 @@ Route::group(['middleware' => ['isAuthenticated']], function () {
 
     Route::post('job_market_regis/add_skill', ['uses' => 'job_registration_controller@add_skill']);
     Route::post('job_market_regis/store_step_3', ['uses' => 'job_registration_controller@store_step_3', 'before' => 'csrf']);
-
+ 
     //search job
     Route::get('job_market/{id}/detail', 'job_market_controller@get_detail')->name('detail_job_market');
     Route::get('edit_detail_job_market/{id}/edit', 'job_market_controller@get_edit_detail')->name('edit_detail_job_market');
+    Route::get('detail_applicant_job_market/{id}/view_applicant', 'resume_controller@get_view_applicant')->name('detail_applicant_job_market');
+    Route::get('get_detail_applicant_job_market/{id}/{job_id}/view_applicant', 'resume_controller@get_detail_applicant')->name('get_detail_applicant_job_market');   
+    Route::get('detail_job_market_delete/{id}/delete_job', 'resume_controller@get_view_applicant')->name('detail_job_market_delete');
     Route::post('job_market/store', ['uses' => 'job_market_controller@store', 'before' => 'csrf']);
 
     // Resume
@@ -70,8 +73,16 @@ Route::group(['middleware' => ['isAuthenticated']], function () {
     Route::post('resume/store', ['uses' => 'resume_controller@store', 'before' => 'csrf']);
 
     //job agreement
+    Route::get('job_agreement/{id}/edit_detail', 'job_agreement_controller@edit_detail')->name('edit_detail_job_agreement');
     Route::get('job_agreement/{id}/detail', 'job_agreement_controller@get_detail')->name('detail_job_agreement');
     Route::get('job_agreement/{id}/detail_applicant', 'job_agreement_controller@get_detail_applicant')->name('detail_job_agreement_applicant');
     Route::post('job_agreement/store_applicant', ['uses' => 'job_agreement_controller@store_applicant', 'before' => 'csrf']);
     Route::post('job_agreement/store_status', ['uses' => 'job_agreement_controller@store_status', 'before' => 'csrf']);
+    Route::get('update_status_job_agreement_finish/{id}/{job_id}/edit', 'job_agreement_controller@update_status_review')->name('update_status_job_agreement_finish');
+    Route::get('update_status_job_agreement_review/{id}/{job_id}/edit', 'job_agreement_controller@update_status_finish_review')->name('update_status_job_agreement_review');
+    
+
+    //job agreement job finder approval
+    Route::get('job_history/{id}/job_history_detail', 'job_history_controller@job_history_detail')->name('job_history_detail');
+    
 });

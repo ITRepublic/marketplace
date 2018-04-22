@@ -11,11 +11,18 @@
             <div class="card-body">
                 {{ Form::open(array('url' => 'job_agreement/store_status', 'method' => 'POST')) }}
                 {{ csrf_field() }}
+                {{ Form::hidden('job_id', $job_master_model->job_id, array('id' => 'txt_job_id')) }}
                 <div class="form-group">
                     <h3>{{ $job_master_model->job_title }}</h3>
                 </div>
                 <?php
                     $group = session()->get('group_check');
+                    $detail_job_agreement_session = session()->get('detail_job_agreement_session');
+                    $can_edit = 'true';
+                    if ($group == 'jf' || $detail_job_agreement_session =='view' )
+                    {
+                        $can_edit = 'false';
+                    }
                 ?>
 
                 <div class="form-group row">
@@ -60,12 +67,12 @@
                     {{ Form::text('job_price', $job_master_model->price_list, array('class' => 'form-control', 'readonly' => 'true')) }}
                     </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     {{ Form::label('job_status', 'Job Status', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
                     {{ Form::select('job_status', $job_status, null, array('class' => 'form-control', 'id' => 'ddl_job_status', $group != 'admin' ? '' : 'disabled' => 'true')) }}
                     </div>
-                </div>
+                </div> -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
                         <thead>
@@ -110,7 +117,6 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Action</th>
                                 <th>Email</th>
                                 <th>User Name</th>
                                 <th>Status</th>
@@ -120,11 +126,6 @@
                             @foreach($job_applicant_model as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>
-                                        <a class=<?php $group == 'admin' ? 'disabled' : 'btn btn-danger btn-sm'?> href="{{ route('detail_job_agreement_applicant', $item->finder_id) }}">
-                                            Detail
-                                        </a>
-                                    </td>
                                     <td>{{ $item->email_address }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->status_name }}</td>                                
@@ -134,36 +135,70 @@
                     <table>
                 </div>
                 <div class="form-group">
-                    <h3>Accepted Applicant List</h3>
+                
+                    <h3>Payment Type {{ $job_agreement_status}}</h3>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Email</th>
-                                <th>User Name</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($job_match_search_applicant as $index => $item)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $item->email_address }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>{{ $item->status_name }}</td>                                
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    <table>
+                <?php  
+                $counter = 1;
+                $total_milestone_price = 0;
+                    if (! empty($job_master_detail_milestone_model)) 
+                    {
+                        foreach ($job_master_detail_milestone_model as $item)
+                        {
+                            $status_detail = $item->status_id;
+                        ?>                   
+                            <div id="TextBoxesGroup" class="milestonediv">
+                                <div id="milestone_detail" class="form-group row">
+                                    {{ Form::label('milestone_detail', 'Milestone Detail #'.$counter, array('class' => 'col-sm-2 col-form-label')) }}
+                                    <div class="form-inline col-sm-10">
+                                        {{ Form::text('milestone_detail_'.$counter, $item->milestone_detail, array('class' => 'form-control col-sm-7', 'readonly' => 'true')) }}
+                                            &nbsp;&nbsp;Price:&nbsp;&nbsp;
+                                        {{ Form::text('milestone_price_'.$counter, $item->milestone_price, array('class' => 'form-control col-sm-2 milestone_price_list numeric', 'readonly' => 'true', 'id' => 'milestone_price_'.$counter)) }}
+                                        &nbsp;&nbsp;&nbsp;<?php 
+                                                        if ($status_detail == '3' && $group == 'jf'){
+                                                            ?>
+                                                            <a class="btn btn-success btn-sm" href="{{ route('update_status_job_agreement_finish', [$item->job_detail_id, $item->job_id]) }}">
+                                                                Finish the task
+                                                            </a>
+                                                            <?php
+                                                        }else if ($status_detail == '4' && $group == 'jc')
+                                                        {
+                                                            ?>
+                                                            <a class="btn btn-success btn-sm" href="{{ route('update_status_job_agreement_review', [$item->job_detail_id, $item->job_id]) }}">
+                                                                Pay and review
+                                                            </a>                                                                
+                                                            <?php
+                                                            
+                                                        }else
+                                                        {
+                                                            ?>
+                                                            <a class="btn btn-success btn-sm" style="display:none;" href="{{ route('update_status_job_agreement_review', [$item->job_detail_id, $item->job_id]) }}">
+                                                                Reviewed
+                                                            </a>                                                                
+                                                            <?php
+                                                        }
+                                                    ?>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        $total_milestone_price = $total_milestone_price+$item->milestone_price;
+                        $counter++;
+                        }                        
+                    }
+                ?>
+                <div class="form-group row milestonediv">
+                    {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
+                        <div class="form-inline col-sm-7">
+                            {{ Form::label('total_milestone_price_label', $total_milestone_price, array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
+                        </div>                 
                 </div>
                 <?php
-                    $group = session()->get('group_check');
                     if ($group != "admin")
                     {
                         ?>
-                            {{ Form::submit('Submit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
+                            {{ Form::submit($group == 'jc' ? 'Submit' : 'Accept the terms', array('class' => 'btn btn-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                         <?php
                     }
                 ?>

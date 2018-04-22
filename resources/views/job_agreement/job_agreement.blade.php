@@ -10,7 +10,7 @@
         <div class="card col-md-10 offset-md-1">
             <div class="card-body">
                 <div class="form-group">
-                    <h3>Job Agreement</h3>
+                    <h3>Contracts</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
@@ -19,7 +19,6 @@
                                 <th>No.</th>
                                 <th>Action</th>
                                 <th>Job Title</th>
-                                <th>Difficulty</th>
                                 <th>Total Apply</th>
                                 <th>Expired Date</th>
                                 <th>Status</th>
@@ -30,12 +29,11 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <a class="btn btn-danger btn-sm" href="{{ route('detail_job_agreement', $item->job_id) }}">
+                                        <a class="btn btn-info btn-sm" href="{{ route('detail_job_agreement', $item->job_id) }}">
                                             Detail
                                         </a>
                                     </td>
                                     <td>{{ $item->job_title }}</td>
-                                    <td>{{ $item->diff_name }}</td>
                                     <td>{{ $item->has_seen_id }}</td>
                                     <td>{{ $item->expired_date }}</td>
                                     <td>{{ $item->status_name }}</td>

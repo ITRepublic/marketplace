@@ -13,7 +13,7 @@
                 {{ Form::open(array('url' => 'profile/store', 'method' => 'POST')) }}
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <h3>Company Profile</h3>
+                    <h3>My Profile</h3>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('company_name', 'Company Name', array('class' => 'col-sm-4 col-form-label')) }}

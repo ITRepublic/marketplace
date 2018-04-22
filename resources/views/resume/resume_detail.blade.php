@@ -40,7 +40,7 @@
                         {{ Form::text('phone', $job_finder_model->phone, array('class' => 'form-control', $edit_session == 'edit' ? '' : 'readonly' => 'true')) }}
                     </div>
                 </div>
-                <!-- <div class="table-responsive">
+                <div class="table-responsive">
                     <table class="table table-bordered table-condensed">
                         <thead>
                             <tr>
@@ -57,7 +57,7 @@
                             @endforeach
                         </tbody>
                     <table>
-                </div> -->
+                </div>
                
                    
             </div>

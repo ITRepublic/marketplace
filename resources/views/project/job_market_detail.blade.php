@@ -121,26 +121,20 @@
                 </div>
                <?php
                     $group = session()->get('group_check');
-                    if ($group == "admin")
+                    if ($group != "admin" && $edit_session != 'view')
                     {
-                        if ($edit_session == 'view')
-                        {
-                            ?>
-                                <a class="btn btn-primary col-md-3 my-1" href="{{ route('edit_detail_job_market', $job_master_model->job_id) }}">
-                                    Edit this job
-                                </a>
-                            <?php
-                        }else
-                        {
-                            ?>
-                                {{ Form::submit('Submit edit', array('class' => 'btn btn-primary col-md-3 my-1')) }}
-                            <?php
-                        }
+                        ?>
+                            {{ Form::submit('Submit edit', array('class' => 'btn btn-primary col-sm-2')) }}
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-danger col-sm-2" href="{{ route('detail_job_market_delete', $item->job_id) }}">
+                                Delete
+                            </a>
+                        <?php
                     }else
                     {
                         ?>
-                            {{ Form::submit('Apply for this job', array('class' => 'btn btn-primary col-md-3 my-1')) }}
-                    <?php
+                            {{ Form::submit('Apply this job', array('class' => 'btn btn-primary col-sm-2')) }}
+                        <?php
                     }
                ?>
                

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2018 at 08:31 PM
+-- Generation Time: Apr 22, 2018 at 08:15 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -79,8 +79,8 @@ CREATE TABLE `job_creator` (
 --
 
 INSERT INTO `job_creator` (`company_id`, `email_address`, `password`, `company_name`, `company_address`, `company_profile`, `phone`, `group_id`, `updated_at`, `created_at`) VALUES
-(1, 'vincent@gmail.com', '123456', 'Jayabaya', 'Jakarta', 'Jakarta', '12312312', 'jc', '2017-11-11 14:43:43', '2017-11-11 14:43:43'),
-(2, '123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'suka suka', 'Bojong Indah', 'Jakarta', '12313123', 'jc', '2018-01-08 23:45:37', '2018-01-08 23:45:37');
+(2, '123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'suka suka', 'Bojong Indah', 'Jakarta', '12313123', 'jc', '2018-01-08 23:45:37', '2018-01-08 23:45:37'),
+(3, 'vincent@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Gregory', 'Jakarta', 'Jakarta', '123456', 'jc', '2018-04-11 06:33:48', '2018-04-11 06:33:48');
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `job_finder` (
 
 INSERT INTO `job_finder` (`finder_id`, `username`, `password`, `email_address`, `address`, `phone`, `group_id`, `updated_at`, `created_at`) VALUES
 (1, 'vincent1234', 'e10adc3949ba59abbe56e057f20f883e', '123@gmail.com', 'bojong indahs', '23', 'jf', '2018-04-05 00:54:53', '2017-12-02 01:36:12'),
-(2, 'vincent12', 'e10adc3949ba59abbe56e057f20f883e', 'vincent123@gmail.com', 'bojong indahs', '1232131234', 'jf', '2018-04-05 00:52:39', '2017-12-02 14:05:14'),
+(2, 'vincent12', 'e10adc3949ba59abbe56e057f20f883e', 'vincent123@gmail.com', 'bojong indahs', '1232131234', 'jf', '2018-04-21 16:02:11', '2017-12-02 14:05:14'),
 (3, 'Jorjonna', 'e10adc3949ba59abbe56e057f20f883e', 'jorjonna@gmail.com', 'citra 2', '0000', 'jf', '2018-01-21 16:53:28', '2018-01-09 11:06:26');
 
 -- --------------------------------------------------------
@@ -120,12 +120,12 @@ CREATE TABLE `job_master` (
   `job_title` varchar(20) NOT NULL,
   `description` text NOT NULL,
   `jc_email_address` varchar(50) NOT NULL,
-  `difficulty` varchar(10) NOT NULL,
   `expired_date` varchar(30) NOT NULL,
   `has_seen_id` int(11) NOT NULL,
   `currency_id` int(11) NOT NULL,
   `price_list` varchar(20) NOT NULL,
   `job_status` int(11) NOT NULL,
+  `payment_type_id` int(11) NOT NULL,
   `created_at` varchar(50) NOT NULL,
   `updated_at` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,9 +134,39 @@ CREATE TABLE `job_master` (
 -- Dumping data for table `job_master`
 --
 
-INSERT INTO `job_master` (`job_id`, `job_title`, `description`, `jc_email_address`, `difficulty`, `expired_date`, `has_seen_id`, `currency_id`, `price_list`, `job_status`, `created_at`, `updated_at`) VALUES
-(8, 'Rayon', 'test job 1', '123@gmail.com', '1', '03/27/2018', 3, 2, '1235600', 2, '2018-03-15 20:15:40', '2018-04-04 23:45:14'),
-(9, 'susah susah', 'test susah', '123@gmail.com', '1', '03/01/2018', 1, 1, '123500', 2, '2018-03-15 20:31:42', '2018-03-15 20:37:18');
+INSERT INTO `job_master` (`job_id`, `job_title`, `description`, `jc_email_address`, `expired_date`, `has_seen_id`, `currency_id`, `price_list`, `job_status`, `payment_type_id`, `created_at`, `updated_at`) VALUES
+(8, 'Rayon', 'test job 1', '123@gmail.com', '03/27/2018', 3, 2, '1235600', 3, 1, '2018-03-15 20:15:40', '2018-04-18 21:06:30'),
+(9, 'susah susah', 'test susah', '123@gmail.com', '03/01/2018', 1, 2, '123500', 3, 2, '2018-03-15 20:31:42', '2018-04-12 06:24:16'),
+(10, 'tralala', 'Test tralala', '123@gmail.com', '04/03/2018', 4, 2, '125000', 2, 2, '2018-04-21 00:27:17', '2018-04-22 13:15:26'),
+(11, 'test job 3', 'damns', '123@gmail.com', '04/03/2018', 1, 2, '150000', 6, 1, '2018-04-21 20:12:17', '2018-04-21 20:17:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_master_detail_milestone`
+--
+
+CREATE TABLE `job_master_detail_milestone` (
+  `job_detail_id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `milestone_detail` text NOT NULL,
+  `milestone_price` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `created_at` varchar(50) NOT NULL,
+  `updated_at` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_master_detail_milestone`
+--
+
+INSERT INTO `job_master_detail_milestone` (`job_detail_id`, `job_id`, `milestone_detail`, `milestone_price`, `status_id`, `created_at`, `updated_at`) VALUES
+(1, 8, 'test1', 55, 3, '2018-04-18 21:06:30', '2018-04-18 21:06:30'),
+(2, 8, 'test2', 5660, 3, '2018-04-18 21:06:30', '2018-04-18 21:06:30'),
+(3, 8, 'test3', 234, 3, '2018-04-18 21:06:30', '2018-04-18 21:06:30'),
+(4, 10, 'test1', 50, 6, '2018-04-21 16:04:40', '2018-04-22 13:15:26'),
+(5, 10, 'test2', 123, 6, '2018-04-21 16:04:40', '2018-04-22 13:15:26'),
+(6, 10, 'test3', 150, 6, '2018-04-21 16:04:40', '2018-04-22 13:15:26');
 
 -- --------------------------------------------------------
 
@@ -158,10 +188,10 @@ CREATE TABLE `job_match_search` (
 --
 
 INSERT INTO `job_match_search` (`job_match_id`, `job_id`, `jf_email_address`, `status_id`, `created_at`, `updated_at`) VALUES
-(3, 8, '123@gmail.com', 5, '2018-03-15 13:17:41', '2018-03-15 13:18:09'),
-(4, 9, '123@gmail.com', 5, '2018-03-15 13:32:23', '2018-03-15 13:33:10'),
-(5, 8, '123@gmail.com', 4, '2018-04-04 16:04:24', '2018-04-04 16:04:24'),
-(6, 8, '123@gmail.com', 4, '2018-04-04 16:20:08', '2018-04-04 16:20:08');
+(3, 8, '123@gmail.com', 7, '2018-03-15 13:17:41', '2018-04-18 14:06:29'),
+(4, 9, '123@gmail.com', 6, '2018-03-15 13:32:23', '2018-04-15 15:26:39'),
+(5, 10, 'vincent123@gmail.com', 6, '2018-04-20 17:47:19', '2018-04-21 09:04:40'),
+(6, 11, 'vincent123@gmail.com', 6, '2018-04-21 13:12:52', '2018-04-21 13:17:56');
 
 -- --------------------------------------------------------
 
@@ -183,7 +213,9 @@ CREATE TABLE `job_match_skill` (
 
 INSERT INTO `job_match_skill` (`skill_job_id`, `job_id`, `skill_id`, `created_at`, `updated_at`) VALUES
 (2, 8, 1, '2018-03-15 20:15:55', '2018-03-15 20:15:55'),
-(3, 9, 1, '2018-03-15 20:31:50', '2018-03-15 20:31:50');
+(3, 9, 1, '2018-03-15 20:31:50', '2018-03-15 20:31:50'),
+(4, 10, 1, '2018-04-21 00:29:41', '2018-04-21 00:29:41'),
+(5, 11, 1, '2018-04-21 20:12:30', '2018-04-21 20:12:30');
 
 -- --------------------------------------------------------
 
@@ -205,7 +237,10 @@ CREATE TABLE `job_match_type` (
 
 INSERT INTO `job_match_type` (`type_job_id`, `job_id`, `job_type_id`, `created_at`, `updated_at`) VALUES
 (8, 8, 1, '2018-03-15 20:15:43', '2018-03-15 20:15:43'),
-(9, 9, 1, '2018-03-15 20:31:45', '2018-03-15 20:31:45');
+(9, 9, 1, '2018-03-15 20:31:45', '2018-03-15 20:31:45'),
+(10, 10, 2, '2018-04-21 00:28:12', '2018-04-21 00:28:12'),
+(11, 10, 1, '2018-04-21 00:28:19', '2018-04-21 00:28:19'),
+(12, 11, 1, '2018-04-21 20:12:20', '2018-04-21 20:12:20');
 
 -- --------------------------------------------------------
 
@@ -303,6 +338,25 @@ INSERT INTO `master_menu` (`menu_id`, `menu_name`, `url_route_menu`, `route_menu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `master_payment_type`
+--
+
+CREATE TABLE `master_payment_type` (
+  `payment_type_id` int(11) NOT NULL,
+  `payment_type_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `master_payment_type`
+--
+
+INSERT INTO `master_payment_type` (`payment_type_id`, `payment_type_name`) VALUES
+(1, 'Full'),
+(2, 'Per milestone');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `master_status`
 --
 
@@ -318,10 +372,12 @@ CREATE TABLE `master_status` (
 INSERT INTO `master_status` (`status_id`, `status_name`) VALUES
 (1, 'Open'),
 (2, 'Closed'),
-(3, 'Active(In Progress)'),
+(3, 'Filled'),
 (4, 'Reviewed'),
-(5, 'Accepted'),
-(6, 'Active(Done)');
+(5, 'Review done'),
+(6, 'Accepted'),
+(7, 'Rejected'),
+(8, 'Removed');
 
 -- --------------------------------------------------------
 
@@ -343,7 +399,8 @@ CREATE TABLE `skill_list` (
 
 INSERT INTO `skill_list` (`skill_list_id`, `jf_email_address`, `skill_id`, `created_at`, `updated_at`) VALUES
 (3, '123@gmail.com', '1', '2018-02-28 16:37:17', '2018-02-28 16:37:17'),
-(4, '123@gmail.com', '2', '2018-02-28 16:42:16', '2018-02-28 16:42:16');
+(4, '123@gmail.com', '2', '2018-02-28 16:42:16', '2018-02-28 16:42:16'),
+(5, 'vincent123@gmail.com', '1', '2018-04-21 09:02:07', '2018-04-21 09:02:07');
 
 -- --------------------------------------------------------
 
@@ -429,6 +486,12 @@ ALTER TABLE `job_master`
   ADD PRIMARY KEY (`job_id`);
 
 --
+-- Indexes for table `job_master_detail_milestone`
+--
+ALTER TABLE `job_master_detail_milestone`
+  ADD PRIMARY KEY (`job_detail_id`);
+
+--
 -- Indexes for table `job_match_search`
 --
 ALTER TABLE `job_match_search`
@@ -470,6 +533,12 @@ ALTER TABLE `master_difficulty`
 ALTER TABLE `master_menu`
   ADD PRIMARY KEY (`menu_id`),
   ADD KEY `seq` (`seq`);
+
+--
+-- Indexes for table `master_payment_type`
+--
+ALTER TABLE `master_payment_type`
+  ADD PRIMARY KEY (`payment_type_id`);
 
 --
 -- Indexes for table `master_status`
@@ -514,7 +583,7 @@ ALTER TABLE `job_agreement`
 -- AUTO_INCREMENT for table `job_creator`
 --
 ALTER TABLE `job_creator`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `job_finder`
 --
@@ -524,7 +593,12 @@ ALTER TABLE `job_finder`
 -- AUTO_INCREMENT for table `job_master`
 --
 ALTER TABLE `job_master`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `job_master_detail_milestone`
+--
+ALTER TABLE `job_master_detail_milestone`
+  MODIFY `job_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `job_match_search`
 --
@@ -534,12 +608,12 @@ ALTER TABLE `job_match_search`
 -- AUTO_INCREMENT for table `job_match_skill`
 --
 ALTER TABLE `job_match_skill`
-  MODIFY `skill_job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `skill_job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `job_match_type`
 --
 ALTER TABLE `job_match_type`
-  MODIFY `type_job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `type_job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `job_type`
 --
@@ -556,15 +630,20 @@ ALTER TABLE `master_admin`
 ALTER TABLE `master_difficulty`
   MODIFY `diff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `master_payment_type`
+--
+ALTER TABLE `master_payment_type`
+  MODIFY `payment_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `master_status`
 --
 ALTER TABLE `master_status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `skill_list`
 --
 ALTER TABLE `skill_list`
-  MODIFY `skill_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `skill_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `skill_type`
 --
