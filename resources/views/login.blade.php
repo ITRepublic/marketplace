@@ -35,7 +35,7 @@
                         <div class="col-md-10"><input type="password" name="password" class="form-control" placeholder="input your password"></div>
                     </div>
                     <div class="form-group">
-                        <p><a href="#" style="font-size: 12px;">Forgot password?</a></p>
+                    <p><a href="{{ url('/forgot-password') }}" style="font-size: 12px;">Forgot password?</a></p>
                         <button type="submit" class="btn btn-outline-primary col-md-2">Login</button>
                     </div>
                     {{-- <div class="form-group">

@@ -25,7 +25,8 @@ class auth_controller extends Controller
 
         $credentials = [
             'email_address' => $request->email,
-            'password' => md5($request->password)
+            'password' => md5($request->password),
+            'status' => 'active'
         ];
 
     	if($request->login_as == 'job_creator') {

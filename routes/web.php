@@ -19,6 +19,12 @@ Route::post('/job_finder/update', ['uses' => 'profile_controller@store', 'before
 // Account Verification
 Route::get('/registration/verify', 'user_controller@verifyRegistration');
 
+// Forgot Password
+Route::get('/forgot-password', 'user_controller@getForgotPassword');
+Route::post('/forgot-password', 'user_controller@doForgotPassword');
+Route::get('/password/reset', 'user_controller@getResetPassword');
+Route::post('/password/reset', 'user_controller@doResetPassword');
+
 // Admin Login and Registration
 Route::get('/web_admin', 'admin_panel_controller@create');
 Route::post('web_admin/login', ['uses' => 'admin_panel_controller@store', 'before' => 'csrf']);
