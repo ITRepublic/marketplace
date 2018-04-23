@@ -16,7 +16,8 @@ class job_create_model extends Model
     	'company_address', 
     	'company_profile',
     	'phone',
-        'group_id'
+		'group_id',
+		'status'
     ];
 
     protected $guarded = ['password'];

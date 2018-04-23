@@ -14,7 +14,8 @@ class job_finder_model extends Model
     	'email_address', 
     	'address', 
     	'phone',
-    	'group_id'
+		'group_id',
+		'status'
     ];
 
     protected $guarded = ['password'];

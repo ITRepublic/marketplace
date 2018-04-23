@@ -16,6 +16,9 @@ Route::get('/job_finder/create', 'job_finder_controller@create')->name('createJo
 Route::post('/job_finder/store', ['uses' => 'job_finder_controller@store', 'before' => 'csrf']);
 Route::post('/job_finder/update', ['uses' => 'profile_controller@store', 'before' => 'csrf']);
 
+// Account Verification
+Route::get('/registration/verify', 'user_controller@verifyRegistration');
+
 // Admin Login and Registration
 Route::get('/web_admin', 'admin_panel_controller@create');
 Route::post('web_admin/login', ['uses' => 'admin_panel_controller@store', 'before' => 'csrf']);

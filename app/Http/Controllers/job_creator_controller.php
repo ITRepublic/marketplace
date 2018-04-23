@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyRegistration;
 use App\job_create_model;
 
 class job_creator_controller extends Controller
@@ -39,7 +41,16 @@ class job_creator_controller extends Controller
 
         job_create_model::create($data);
 
+        $item = [
+            'email' => $request->email_address,
+            'name' => $request->company_name,
+            'account_type' => 'jc'
+        ];
+
+    	// send email to user
+        Mail::to($item['email'])->send(new VerifyRegistration($item));
+
         // redirect
-        return redirect('job_creator/create')->withSuccess('Thank you for registering. Your data has been saved.');
+        return redirect('job_creator/create')->withSuccess("Thank you for registering. Account verification's link has been sent to your email.");
     }
 }
