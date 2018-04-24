@@ -139,6 +139,7 @@
                     <h3>Payment Type {{ $job_agreement_status->payment_type_name}}</h3>
                 </div>
                 <?php  
+                var_dump($job_master_detail_milestone_model); die;
                 $counter = 1;
                 $total_milestone_price = 0;
                     if (! empty($job_master_detail_milestone_model)) 
