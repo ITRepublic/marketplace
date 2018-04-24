@@ -67,8 +67,11 @@ class job_agreement_controller extends Controller
         $job_master_detail_milestone_model_check = job_master_detail_milestone_model::where('job_id', $id)
         ->where(function($query)
             {
-                $query->where('status_id', '=', '3')
-                    ->orWhere('status_id', '=', '4');
+                $query->where('status_id', '=', '2')
+                    ->orWhere('status_id', '=', '3')
+                    ->orWhere('status_id', '=', '4')
+                    ->orWhere('status_id', '=', '5')
+                    ->orWhere('status_id', '=', '6');
             })
         ->count();
 
@@ -279,12 +282,19 @@ class job_agreement_controller extends Controller
             })
         ->count();
         
-        
-        if ($group == 'jf')
+        $job_master_model = job_master_model::where('job_id', $job_id)
+        ->first();
+
+        if ($group == 'jf' && $job_master_model->job_status == '6')
         {
             $data['job_status'] = '3';
             $data_update['status_id'] = '3';
-        }else
+        }
+        elseif ($group == 'jf' && $job_master_model->job_status == '3' && $job_master_model->payment_type_id == '1')
+        {
+            $data['job_status'] = '4';
+        }
+        else
         {
             $data['job_status'] = '2';
         }
@@ -297,7 +307,13 @@ class job_agreement_controller extends Controller
         }
         
         session()->forget('result');
-        return redirect()->to('/job_agreement')->withSuccess('Job Status Update is done.');
+        if ($group == 'jf')
+        {
+            return redirect()->to('/history')->withSuccess('Job Status Update is done.');
+        }else
+        {
+            return redirect()->to('/job_agreement')->withSuccess('Job Status Update is done.');
+        }
     }
 
     public function update_status_review($id, $job_id)

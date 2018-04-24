@@ -139,7 +139,6 @@
                     <h3>Payment Type {{ $job_agreement_status->payment_type_name}}</h3>
                 </div>
                 <?php  
-                var_dump($job_master_detail_milestone_model); die;
                 $counter = 1;
                 $total_milestone_price = 0;
                     if (! empty($job_master_detail_milestone_model)) 
@@ -206,7 +205,17 @@
                     if ($group != "admin")
                     {
                         ?>
-                            {{ Form::submit($group == 'jc' ? 'End contract' : 'Accept the terms', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            @if($job_master_model->job_status == 6 && $group == 'jf')
+                            {{ Form::submit('Accept the terms', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            @elseif($job_master_model->job_status == 3 && $group == 'jf' && $job_agreement_status->payment_type_name == 'Full')
+                            {{ Form::submit('Request payment', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            @elseif($job_master_model->job_status == 4 && $job_master_model->payment_type_id == 1 && 
+                                $group == 'jc')
+                            {{ Form::submit('Pay and end contract', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            @elseif($job_master_model->job_status == 3 && $job_master_model->payment_type_id == 2 && 
+                                $group == 'jc')
+                            {{ Form::submit('End contract', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
+                            @endif
                         <?php
                     }
                 ?>

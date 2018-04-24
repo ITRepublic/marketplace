@@ -42,7 +42,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('history') }}">
-                            Projects History
+                            Contracts
                         </a>
                     </li>
                     <li class="nav-item">
