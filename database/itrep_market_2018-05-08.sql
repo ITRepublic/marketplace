@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.38)
 # Database: itrep_market
-# Generation Time: 2018-04-23 16:13:42 +0000
+# Generation Time: 2018-05-08 05:46:52 +0000
 # ************************************************************
 
 
@@ -18,6 +18,37 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table chat
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `chat`;
+
+CREATE TABLE `chat` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `job_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) DEFAULT NULL,
+  `message` longtext NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+LOCK TABLES `chat` WRITE;
+/*!40000 ALTER TABLE `chat` DISABLE KEYS */;
+
+INSERT INTO `chat` (`id`, `job_id`, `sender_id`, `receiver_id`, `message`, `created_at`, `updated_at`)
+VALUES
+	(1,13,2,3,'Hi','2018-05-08 11:56:16','0000-00-00 00:00:00'),
+	(2,13,3,2,'Hi juga','2018-05-08 12:09:23','0000-00-00 00:00:00'),
+	(3,13,3,2,'mau tanya dong','2018-05-08 12:32:33','2018-05-08 12:32:33'),
+	(4,13,3,2,'test','2018-05-08 12:32:48','2018-05-08 12:32:48'),
+	(5,13,2,3,'ya ada yang bisa di bantu?','2018-05-08 12:33:23','2018-05-08 12:33:23');
+
+/*!40000 ALTER TABLE `chat` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table currency
@@ -86,7 +117,7 @@ INSERT INTO `job_creator` (`company_id`, `email_address`, `password`, `company_n
 VALUES
 	(2,'123@gmail.com','e10adc3949ba59abbe56e057f20f883e','suka suka','Bojong Indah','Jakarta','12313123','jc','active','2018-01-08 23:45:37','2018-01-08 23:45:37'),
 	(3,'vincent@gmail.com','e10adc3949ba59abbe56e057f20f883e','Gregory','Jakarta','Jakarta','123456','jc','active','2018-04-11 06:33:48','2018-04-11 06:33:48'),
-	(5,'jorjonna@gmail.com','e10adc3949ba59abbe56e057f20f883e','Emetra','Emetra','Emetra','081289256242','jc','active','2018-04-23 23:12:27','2018-04-23 23:10:42');
+	(5,'jorjonna@gmail.com','e10adc3949ba59abbe56e057f20f883e','Emetra','Emetra','Emetra','081289256242','jc','active','2018-04-23 23:42:00','2018-04-23 23:10:42');
 
 /*!40000 ALTER TABLE `job_creator` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -131,7 +162,7 @@ DROP TABLE IF EXISTS `job_master`;
 
 CREATE TABLE `job_master` (
   `job_id` int(11) NOT NULL AUTO_INCREMENT,
-  `job_title` varchar(20) NOT NULL,
+  `job_title` varchar(50) NOT NULL DEFAULT '',
   `description` text NOT NULL,
   `jc_email_address` varchar(50) NOT NULL,
   `expired_date` varchar(30) NOT NULL,
@@ -143,7 +174,7 @@ CREATE TABLE `job_master` (
   `created_at` varchar(50) NOT NULL,
   `updated_at` varchar(50) NOT NULL,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `job_master` WRITE;
 /*!40000 ALTER TABLE `job_master` DISABLE KEYS */;
@@ -151,11 +182,13 @@ LOCK TABLES `job_master` WRITE;
 INSERT INTO `job_master` (`job_id`, `job_title`, `description`, `jc_email_address`, `expired_date`, `has_seen_id`, `currency_id`, `price_list`, `job_status`, `payment_type_id`, `created_at`, `updated_at`)
 VALUES
 	(8,'Rayon','test job 1','123@gmail.com','03/27/2018',3,2,'1235600',2,1,'2018-03-15 20:15:40','2018-04-22 20:28:15'),
-	(9,'susah susah','test susah','123@gmail.com','03/01/2018',1,2,'123500',3,2,'2018-03-15 20:31:42','2018-04-12 06:24:16'),
-	(10,'tralala','Test tralala','123@gmail.com','04/03/2018',4,2,'125000',2,2,'2018-04-21 00:27:17','2018-04-22 13:15:26'),
+	(9,'susah susah','test susah','123@gmail.com','03/01/2018',1,2,'123500',2,2,'2018-03-15 20:31:42','2018-04-24 19:56:05'),
+	(10,'tralala','Test tralala','123@gmail.com','04/03/2018',4,2,'125000',2,2,'2018-04-21 00:27:17','2018-04-24 19:53:04'),
 	(11,'test job 3','damns','123@gmail.com','04/03/2018',1,2,'150000',6,1,'2018-04-21 20:12:17','2018-04-21 20:17:56'),
-	(12,'Test Job','this is for testing purpose only','123@gmail.com','05/31/2018',0,2,'1500000',1,1,'2018-04-22 16:01:20','2018-04-22 20:05:08'),
-	(13,'Test Job 2','testing purpose','123@gmail.com','04/30/2018',0,2,'5000000',1,1,'2018-04-22 19:56:03','2018-04-22 19:57:39');
+	(12,'Test Job','this is for testing purpose only','123@gmail.com','05/31/2018',0,2,'1500000',1,1,'2018-04-22 16:01:20','2018-05-08 11:03:41'),
+	(13,'Test Job 2','testing purpose','123@gmail.com','04/30/2018',3,2,'5000000',1,1,'2018-04-22 19:56:03','2018-05-08 11:04:01'),
+	(14,'test job full payment','test full','123@gmail.com','04/25/2018',1,1,'50',2,1,'2018-04-24 20:02:42','2018-04-24 20:40:13'),
+	(15,'test job milestone','test milestone','123@gmail.com','04/25/2018',1,1,'1800',2,2,'2018-04-24 20:40:31','2018-04-24 20:50:46');
 
 /*!40000 ALTER TABLE `job_master` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -175,7 +208,7 @@ CREATE TABLE `job_master_detail_milestone` (
   `created_at` varchar(50) NOT NULL,
   `updated_at` varchar(50) NOT NULL,
   PRIMARY KEY (`job_detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `job_master_detail_milestone` WRITE;
 /*!40000 ALTER TABLE `job_master_detail_milestone` DISABLE KEYS */;
@@ -185,9 +218,12 @@ VALUES
 	(1,8,'test1',55,6,'2018-04-18 21:06:30','2018-04-22 20:28:15'),
 	(2,8,'test2',5660,6,'2018-04-18 21:06:30','2018-04-22 20:28:15'),
 	(3,8,'test3',234,6,'2018-04-18 21:06:30','2018-04-22 20:28:15'),
-	(4,10,'test1',50,6,'2018-04-21 16:04:40','2018-04-22 13:15:26'),
-	(5,10,'test2',123,6,'2018-04-21 16:04:40','2018-04-22 13:15:26'),
-	(6,10,'test3',150,6,'2018-04-21 16:04:40','2018-04-22 13:15:26');
+	(4,10,'test1',50,6,'2018-04-21 16:04:40','2018-04-24 19:53:04'),
+	(5,10,'test2',123,6,'2018-04-21 16:04:40','2018-04-24 19:53:04'),
+	(6,10,'test3',150,6,'2018-04-21 16:04:40','2018-04-24 19:53:04'),
+	(7,15,'test 1',500,6,'2018-04-24 20:42:01','2018-04-24 20:50:46'),
+	(8,15,'trest2',600,6,'2018-04-24 20:42:01','2018-04-24 20:50:46'),
+	(9,15,'test 3',700,6,'2018-04-24 20:42:01','2018-04-24 20:50:46');
 
 /*!40000 ALTER TABLE `job_master_detail_milestone` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -206,7 +242,7 @@ CREATE TABLE `job_match_search` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`job_match_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `job_match_search` WRITE;
 /*!40000 ALTER TABLE `job_match_search` DISABLE KEYS */;
@@ -216,7 +252,10 @@ VALUES
 	(3,8,'123@gmail.com',7,'2018-03-15 20:17:41','2018-04-18 21:06:29'),
 	(4,9,'123@gmail.com',6,'2018-03-15 20:32:23','2018-04-15 22:26:39'),
 	(5,10,'vincent123@gmail.com',6,'2018-04-21 00:47:19','2018-04-21 16:04:40'),
-	(6,11,'vincent123@gmail.com',6,'2018-04-21 20:12:52','2018-04-21 20:17:56');
+	(6,11,'vincent123@gmail.com',6,'2018-04-21 20:12:52','2018-04-21 20:17:56'),
+	(7,14,'vincent123@gmail.com',6,'2018-04-24 20:03:32','2018-04-24 20:03:55'),
+	(8,15,'vincent123@gmail.com',6,'2018-04-24 20:41:10','2018-04-24 20:42:01'),
+	(9,13,'jorjonna@gmail.com',1,'2018-05-08 10:59:40','2018-05-08 10:59:40');
 
 /*!40000 ALTER TABLE `job_match_search` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -234,7 +273,7 @@ CREATE TABLE `job_match_skill` (
   `created_at` varchar(25) NOT NULL,
   `updated_at` varchar(25) NOT NULL,
   PRIMARY KEY (`skill_job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `job_match_skill` WRITE;
 /*!40000 ALTER TABLE `job_match_skill` DISABLE KEYS */;
@@ -247,7 +286,9 @@ VALUES
 	(5,11,1,'2018-04-21 20:12:30','2018-04-21 20:12:30'),
 	(6,12,2,'2018-04-22 16:14:46','2018-04-22 16:14:46'),
 	(7,13,2,'2018-04-22 19:56:22','2018-04-22 19:56:22'),
-	(8,13,1,'2018-04-22 19:56:27','2018-04-22 19:56:27');
+	(8,13,1,'2018-04-22 19:56:27','2018-04-22 19:56:27'),
+	(9,14,1,'2018-04-24 20:02:56','2018-04-24 20:02:56'),
+	(10,15,1,'2018-04-24 20:40:39','2018-04-24 20:40:39');
 
 /*!40000 ALTER TABLE `job_match_skill` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -265,7 +306,7 @@ CREATE TABLE `job_match_type` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`type_job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `job_match_type` WRITE;
 /*!40000 ALTER TABLE `job_match_type` DISABLE KEYS */;
@@ -278,7 +319,9 @@ VALUES
 	(11,10,1,'2018-04-21 00:28:19','2018-04-21 00:28:19'),
 	(12,11,1,'2018-04-21 20:12:20','2018-04-21 20:12:20'),
 	(13,12,1,'2018-04-22 16:10:10','2018-04-22 16:10:10'),
-	(14,13,1,'2018-04-22 19:56:06','2018-04-22 19:56:06');
+	(14,13,1,'2018-04-22 19:56:06','2018-04-22 19:56:06'),
+	(15,14,1,'2018-04-24 20:02:44','2018-04-24 20:02:44'),
+	(16,15,1,'2018-04-24 20:40:33','2018-04-24 20:40:33');
 
 /*!40000 ALTER TABLE `job_match_type` ENABLE KEYS */;
 UNLOCK TABLES;
