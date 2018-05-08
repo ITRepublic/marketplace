@@ -189,18 +189,32 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         <?php
                         $total_milestone_price = $total_milestone_price+$item->milestone_price;
                         $counter++;
-                        }                        
-                    }
-                ?>
-                <div class="form-group row milestonediv">
-                    {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
+                        }     
+                        ?>
+                        <div class="form-group row milestonediv">
+                    {{ Form::label('total_milestone_price', 'Total Full Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
                         <div class="form-inline col-sm-7">
                             {{ Form::label('total_milestone_price_label', number_format($total_milestone_price), array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
                         </div>                 
                 </div>
+                        <?php                   
+                    }else
+                    {
+                        ?>
+                            <div class="form-group row milestonediv">
+                    {{ Form::label('total_milestone_price', 'Total Milestone Price', array('class' => 'col-sm-3 col-form-label', 'id' => 'total_milestone_price')) }}
+                        <div class="form-inline col-sm-7">
+                            {{ Form::label('total_milestone_price_label', number_format($job_master_model->price_list), array('class' => 'col-sm-5 col-form-label', 'id' => 'total_milestone_price_label')) }}
+                        </div>                 
+                </div>
+                        <?php
+                    }
+                ?>
+                
                 <?php
                     if ($group != "admin")
                     {
@@ -214,6 +228,18 @@
                             {{ Form::submit('Pay and end contract', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                             @elseif($job_master_model->job_status == 3 && $job_master_model->payment_type_id == 2 && 
                                 $group == 'jc')
+                                <div class="form-group">
+                                    <input type="hidden" id="php1_hidden" value="1">
+                                    <img src="{{ asset('public/image/star1.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php1" class="img-fluid">
+                                    <input type="hidden" id="php2_hidden" value="2">
+                                    <img src="{{ asset('public/image/star1.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php2" class="img-fluid">
+                                    <input type="hidden" id="php3_hidden" value="3">
+                                    <img src="{{ asset('public/image/star1.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php3" class="php">
+                                    <input type="hidden" id="php4_hidden" value="4">
+                                    <img src="{{ asset('public/image/star1.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php4" class="php">
+                                    <input type="hidden" id="php5_hidden" value="5">
+                                    <img src="{{ asset('public/image/star1.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php5" class="php">
+                                </div>
                             {{ Form::submit('End contract', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                             @endif
                         <?php
@@ -230,5 +256,22 @@
             pointer-events: none;
             cursor: default;
          }
+
+         function change(id)
+   {
+      var cname=document.getElementById(id).className;
+      var ab=document.getElementById(id+"_hidden").value;
+      document.getElementById(cname+"rating").innerHTML=ab;
+    alert('test');
+      for(var i=ab;i>=1;i--)
+      {
+         document.getElementById(cname+i).src="star2.png";
+      }
+      var id=parseInt(ab)+1;
+      for(var j=id;j<=5;j++)
+      {
+         document.getElementById(cname+j).src="star1.png";
+      }
+   }
     </script>
 @stop

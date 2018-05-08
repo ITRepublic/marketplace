@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('emailaddress', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('email_address', 'Email Address', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
                         {{ Form::email('email_address', old('email_address'), array('class' => 'form-control')) }}
                     </div>

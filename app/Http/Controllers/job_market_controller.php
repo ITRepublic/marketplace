@@ -22,11 +22,16 @@ class job_market_controller extends Controller
     //
     public function create()
     {
+        $dtnow = Carbon::now()->format('m/d/Y');
         $email_id = session()->get('user_email');
         $job_finder_model = job_finder_model::where('email_address', $email_id)->first();
         $job_master_model = job_master_model::join('currency','job_master.currency_id', '=', 'currency.currency_id')
         ->join('job_creator','job_master.jc_email_address', '=', 'job_creator.email_address')
         ->where('job_master.job_status', '1')
+        ->where([
+            ['job_master.job_status', '=', '1'],
+            ['job_master.expired_date', '>', $dtnow]
+        ])
         ->get();
         
         return view('project.job_market', array('job_master_model' => $job_master_model, 'job_finder_model' => $job_finder_model))->withTitle('Job Marketplace');
