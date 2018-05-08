@@ -16,7 +16,6 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Email</th>
                                 <th>User Name</th>
                                 <th>Rating</th>
                                 <th>Action</th>
@@ -26,7 +25,6 @@
                             @foreach($job_finder_model as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $item->email_address }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>4</td>
                                     <td>
@@ -38,6 +36,10 @@
                                             ?>
                                                 <a class="btn btn-outline-success btn-sm" href="{{ route('get_detail_applicant_job_market', [$item->finder_id, $item->job_id]) }}">
                                                     Hire
+                                                </a>
+
+                                                <a class="btn btn-outline-dark btn-sm" href="{{ route('load_chat', ['job_id' => $item->job_id, 'job_finder_id' => $item->finder_id]) }}" target="_blank">
+                                                    Message
                                                 </a>
                                                 
                                             <?php

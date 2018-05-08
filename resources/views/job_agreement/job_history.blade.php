@@ -34,6 +34,9 @@
                                         <a class="btn btn-outline-dark btn-sm col-md-5 my-1" href="{{ route('job_history_detail', $item->job_id) }}">
                                             Detail
                                         </a>
+                                        <a class="btn btn-outline-success btn-sm col-md-5 my-1" href="{{ route('load_chat', ['job_id' => $item->job_id, 'job_finder_id' => session('user_id')]) }}" target="_blank">
+                                            Message
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

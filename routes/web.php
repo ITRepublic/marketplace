@@ -93,5 +93,9 @@ Route::group(['middleware' => ['isAuthenticated']], function () {
 
     //job agreement job finder approval
     Route::get('job_history/{id}/job_history_detail', 'job_history_controller@job_history_detail')->name('job_history_detail');
+
+    // chat
+    Route::get('/job/{job_id}/{finder_id}/chat', 'chat_controller@get_chat')->name('load_chat');
+    Route::post('/job/{job_id}/{finder_id}chat', 'chat_controller@send_chat')->name('send_chat');
     
 });

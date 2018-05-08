@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('phone', 'phone', array('class' => 'col-sm-4 col-form-label')) }}
+                    {{ Form::label('phone', 'Phone', array('class' => 'col-sm-4 col-form-label')) }}
                     <div class="col-sm-8">
                         {{ Form::text('phone', $job_create_model->phone, array('class' => 'form-control')) }}
                     </div>

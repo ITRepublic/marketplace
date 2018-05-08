@@ -69,7 +69,7 @@ class job_market_controller extends Controller
                 $finishtext = 'Job Apply is done.';
             }
         }
-        return redirect()->to('/project_list')->withSuccess($finishtext);       
+        return back()->withSuccess($finishtext);       
     }
     public function get_detail($id)
     {
