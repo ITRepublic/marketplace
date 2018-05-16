@@ -16,6 +16,7 @@ use App\master_status;
 use App\job_master_detail_milestone_model;
 use App\payment_type;
 use App\master_currency;
+use App\job_user_rating_model;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Redirect;
@@ -54,7 +55,10 @@ class job_agreement_controller extends Controller
 
         $job_applicant_model = job_match_search_model::join('job_finder','job_match_search.jf_email_address', '=', 'job_finder.email_address')
         ->join('master_status', 'job_match_search.status_id', '=', 'master_status.status_id')
-        ->where('job_id', $id)
+        ->where([
+            ['job_match_search.status_id', '=', '6'],
+            ['job_id', '=', $id]
+            ])
         ->get();
 
         $job_match_search_applicant = job_match_search_model::join('job_finder','job_match_search.jf_email_address', '=', 'job_finder.email_address')
@@ -265,7 +269,7 @@ class job_agreement_controller extends Controller
     public function store_status(Request $request)
     {
         $job_id = $request->job_id;
-
+        
         $group = session()->get('group_check');
 
         $data['job_status'] = '6';
@@ -296,7 +300,33 @@ class job_agreement_controller extends Controller
         }
         else
         {
+            $job_applicant_model = job_match_search_model::join('job_finder','job_match_search.jf_email_address', '=', 'job_finder.email_address')
+            ->where([
+                ['job_match_search.status_id', '=', '6'],
+                ['job_id', '=', $job_id]
+                ])
+            ->get()->first();
+            $rating_score = $request->total_score_rating;
             $data['job_status'] = '2';
+            
+            $data_insert['job_id'] = $job_id;
+            $data_insert['user_id'] = $job_applicant_model->finder_id;
+            $data_insert['group_id'] = 'jf';
+            $data_insert['rating_score'] = $rating_score;
+            
+            job_user_rating_model::create($data_insert);
+            $finder_score = job_user_rating_model::where('finder_id',$job_applicant_model->finder_id)
+            ->get(['rating_score']);
+            $score_detail_array = array();
+            $score_detail_array[] = $finder_score;
+            $total_score = '0';
+            
+            foreach($score_detail_array as $value) {
+                $total_score = $total_score + $value->rating_score;
+                
+            }
+            $data_total_score['total_score'] = $total_score;
+            job_finder_model::where('finder_id', $job_applicant_model->finder_id)->update($data_total_score);       
         }
 
 

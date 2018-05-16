@@ -15,6 +15,7 @@ class job_finder_model extends Model
     	'address', 
     	'phone',
 		'group_id',
+		'total_rating',
 		'status'
     ];
 

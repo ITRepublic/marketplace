@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->username }}</td>
-                                    <td>4</td>
+                                    <td>{{ $item->total_score }}</td>
                                     <td>
                                     <?php
                                         $edit_session = session()->get('detail_resume_session');

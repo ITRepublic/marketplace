@@ -33,6 +33,7 @@ class job_finder_controller extends Controller
         $data['address'] = $request->address;
         $data['phone'] = $request->phone;
         $data['group_id'] = 'jf';
+        $data['total_rating'] = '0';
 
         $jf = job_finder_model::create($data);
 

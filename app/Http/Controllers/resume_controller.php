@@ -9,6 +9,7 @@ use App\job_match_search_model;
 use App\master_status;
 use App\payment_type;
 use App\job_master_model;
+use App\job_user_rating_model;
 
 use Illuminate\Http\Request;
 

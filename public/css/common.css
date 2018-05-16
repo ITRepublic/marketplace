@@ -8,3 +8,7 @@ body {
 .content-wrapper {
 	min-height: 85vh;
 }
+.disabled {
+	pointer-events: none;
+	cursor: default;
+ }
