@@ -225,6 +225,19 @@
                             {{ Form::submit('Request payment', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                             @elseif($job_master_model->job_status == 4 && $job_master_model->payment_type_id == 1 && 
                                 $group == 'jc')
+                                <div class="form-group rating">
+                                    <input type="hidden" id="php1_hidden" value="1">
+                                    <img src="{{ asset('public/image/star2.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php1" class="php">
+                                    <input type="hidden" id="php2_hidden" value="2">
+                                    <img src="{{ asset('public/image/star2.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php2" class="php">
+                                    <input type="hidden" id="php3_hidden" value="3">
+                                    <img src="{{ asset('public/image/star2.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php3" class="php">
+                                    <input type="hidden" id="php4_hidden" value="4">
+                                    <img src="{{ asset('public/image/star2.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php4" class="php">
+                                    <input type="hidden" id="php5_hidden" value="5">
+                                    <img src="{{ asset('public/image/star2.png') }}" style="width:50px; height:50px;" onmouseover="change(this.id);" id="php5" class="php">
+                                    {{ Form::hidden('total_score_rating', "0", array('id' => 'total_rating')) }}
+                                </div>
                             {{ Form::submit('Pay and end contract', array('class' => 'btn btn-outline-primary col-md-3 my-1', $detail_job_agreement_session == 'edit' ? '' : 'style="display:none"')) }}
                             @elseif($job_master_model->job_status == 3 && $job_master_model->payment_type_id == 2 && 
                                 $group == 'jc')

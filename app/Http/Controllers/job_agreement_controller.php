@@ -315,17 +315,16 @@ class job_agreement_controller extends Controller
             $data_insert['rating_score'] = $rating_score;
             
             job_user_rating_model::create($data_insert);
-            $finder_score = job_user_rating_model::where('finder_id',$job_applicant_model->finder_id)
+            $finder_score = job_user_rating_model::where('user_id',$job_applicant_model->finder_id)
             ->get(['rating_score']);
-            $score_detail_array = array();
-            $score_detail_array[] = $finder_score;
+
             $total_score = '0';
             
-            foreach($score_detail_array as $value) {
-                $total_score = $total_score + $value->rating_score;
-                
+            foreach($finder_score as $value) {
+                $total_score += $value->rating_score;
+
             }
-            $data_total_score['total_score'] = $total_score;
+            $data_total_score['total_rating'] = $total_score/count($finder_score);
             job_finder_model::where('finder_id', $job_applicant_model->finder_id)->update($data_total_score);       
         }
 
