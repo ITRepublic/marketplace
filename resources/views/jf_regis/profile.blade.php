@@ -10,7 +10,7 @@
             <div class="card col-md-10 offset-md-1">
                 <div class="card-body">
 
-                {{ Form::open(array('url' => 'profile/store', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => 'profile/store','files' => true, 'method' => 'POST')) }}
                 {{ csrf_field() }}
                 <div class="form-group">
                     <h3>My Profile</h3>
@@ -46,7 +46,14 @@
                         {{ Form::select('skill_list', $skill_type, null, array('class' => 'form-control', 'id' => 'ddl_skill_list')) }} <br>
                         {{ Form::button('Add to List', array('id' => 'add_skill', 'class' => 'btn btn-outline-primary')) }}
                     </div>
-
+                    
+                </div>
+                <div class="form-group row">
+                    {{ Form::label('profile_pict', 'Profile pict', array('class' => 'col-sm-4 col-form-label')) }}
+                    <div class="col-sm-8 form-group">
+                    {{Form::file('profile_pict')}}
+                    </div>
+                </div>
                     <div class="table-responsive">
                         <h3>Skill Lists</h3>
                         <table class="table table-bordered table-condensed">
@@ -66,7 +73,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                
                 {{ Form::submit('Update', array('class' => 'btn btn-outline-primary col-md-3 my-1')) }}
                 {{ Form::close() }}
                    

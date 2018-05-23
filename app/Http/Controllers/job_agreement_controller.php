@@ -27,8 +27,7 @@ class job_agreement_controller extends Controller
     public function create()
     {
         $email_id = session()->get('user_email');
-        $job_match_search_model = job_match_search_model::join('job_master','job_match_search.job_id', '=', 'job_master.job_id')
-        ->join('master_status', 'job_master.job_status', '=', 'master_status.status_id')
+        $job_match_search_model = job_master_model::join('master_status', 'job_master.job_status', '=', 'master_status.status_id')
         ->where('job_master.jc_email_address', $email_id)
         ->get();
         return view('job_agreement.job_agreement', array('job_match_search_model' => $job_match_search_model))->withTitle('Job Agreement List');

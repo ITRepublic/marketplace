@@ -6,6 +6,7 @@ use App\job_finder_model;
 use App\skill_type_model;
 use App\skill_list_model;
 use Validator;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -36,6 +37,13 @@ class profile_controller extends Controller
         $data['username'] = $request->username;
         $data['address'] = $request->address;
         $data['phone'] = $request->phone;
+        $profile_pict_name = Carbon::now().'-'.$request->file('profile_pict')->getClientOriginalName();
+          /*
+          talk the select file and move it public directory and make avatars
+          folder if doesn't exsit then give it that unique name.
+          */
+        // $request->job_finder_profilepict->move(public_path('profile_pictures'), $profile_pict_name);
+        $data['profile_pict'] = $profile_pict_name;
         $jf = job_finder_model::where('email_address',session()->get('user_email'))->update($data);
         return redirect('/profile')->withSuccess('Profile has been updated.');
     }
