@@ -33,14 +33,21 @@ class profile_controller extends Controller
             'phone'         => 'required|numeric'
     	];
         $this->validate($request, $rules);
+
+        // upload image
+    	if ($request->hasFile('profile_pict')) {
+    		// will store in folder storage/app/image
+    		$path = 'storage/app/'.$request->file('profile_pict')->store('image');
+        }
+        else {
+            $path = "";
+        }
+        
         //save db
         $data['username'] = $request->username;
         $data['address'] = $request->address;
         $data['phone'] = $request->phone;
-        $file_check = $request->file('profile_pict');
-            $profile_pict_name = Carbon::now().'-'.$request->file('profile_pict')->getClientOriginalName();
-            $request->job_finder_profilepict->move(public_path('public/profile_pictures'), $profile_pict_name);
-            $data['profile_pict'] = $profile_pict_name;
+        $data['profile_pict'] = $path;
         
         $jf = job_finder_model::where('email_address',session()->get('user_email'))->update($data);
         return redirect('/profile')->withSuccess('Profile has been updated.');
